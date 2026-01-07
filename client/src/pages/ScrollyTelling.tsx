@@ -11,6 +11,104 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { MapPin, Mail, Phone, Clock } from "lucide-react";
 
+
+import React, { useState } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
+import { Send, CheckCircle } from 'lucide-react'; 
+// Assuming you have these UI components imported already:
+// import { Input, Textarea, Button, Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from './your-ui-components';
+
+const ContactForm = () => {
+  const [state, handleSubmit] = useForm("xldnjbrn");
+  const [subject, setSubject] = useState(""); // Local state to handle custom Select
+
+  if (state.succeeded) {
+    return (
+      <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-6 text-center">
+        <div className="flex justify-center mb-4">
+          <CheckCircle className="w-12 h-12 text-green-500" />
+        </div>
+        <h3 className="text-xl font-bold text-white mb-2">Message Sent!</h3>
+        <p className="text-neutral-400">
+          Thank you for contacting us. We will get back to you shortly.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4">
+      {/* Name Input */}
+      <div>
+        <Input 
+          id="name"
+          name="name"
+          required
+          placeholder="Your Name" 
+          className="bg-white/5 border-white/10 text-white focus:border-cyan-500/50" 
+        />
+        <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-400 text-sm mt-1" />
+      </div>
+
+      {/* Email Input */}
+      <div>
+        <Input 
+          id="email"
+          name="email"
+          type="email"
+          required
+          placeholder="Your Email" 
+          className="bg-white/5 border-white/10 text-white focus:border-cyan-500/50" 
+        />
+        <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-400 text-sm mt-1" />
+      </div>
+
+      {/* Subject Select - Uses a hidden input to pass data to Formspree */}
+      <div>
+        <input type="hidden" name="subject" value={subject} />
+        <Select onValueChange={(value) => setSubject(value)} required>
+          <SelectTrigger className="bg-white/5 border-white/10 text-white focus:border-cyan-500/50">
+            <SelectValue placeholder="Select a subject" />
+          </SelectTrigger>
+          <SelectContent className="bg-neutral-900 border-white/10 text-white">
+            <SelectItem value="General Inquiry">General Inquiry</SelectItem>
+            <SelectItem value="Technical Support">Technical Support</SelectItem>
+            <SelectItem value="Sales">Sales</SelectItem>
+            <SelectItem value="Partnership">Partnership</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      {/* Message Textarea */}
+      <div>
+        <Textarea 
+          id="message"
+          name="message"
+          required
+          placeholder="Your Message" 
+          className="bg-white/5 border-white/10 text-white focus:border-cyan-500/50 min-h-[120px]" 
+        />
+        <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-400 text-sm mt-1" />
+      </div>
+
+      {/* Submit Button */}
+      <Button 
+        type="submit" 
+        disabled={state.submitting}
+        className="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-bold tracking-widest uppercase flex items-center justify-center gap-2"
+      >
+        {state.submitting ? (
+           <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+        ) : (
+           <>Send Message <Send className="w-4 h-4" /></>
+        )}
+      </Button>
+    </form>
+  );
+};
+
+export default ContactForm;
+
 export default function ScrollyTelling() {
   const [activeSectionId, setActiveSectionId] = useState(sections[0].id);
   const [, setLocation] = useLocation();
@@ -179,6 +277,7 @@ export default function ScrollyTelling() {
 
                 {section.type === "contact" && (
                   <div className="grid md:grid-cols-2 gap-12">
+                    {/* Left Side: Contact Info (Unchanged) */}
                     <div className="space-y-8">
                       <div className="flex gap-4">
                         <MapPin className="text-cyan-500 w-6 h-6 shrink-0" />
@@ -210,24 +309,10 @@ export default function ScrollyTelling() {
                       </div>
                     </div>
                     
-                    <form className="space-y-4">
-                      <Input placeholder="Your Name" className="bg-white/5 border-white/10 text-white focus:border-cyan-500/50" />
-                      <Input placeholder="Your Email" className="bg-white/5 border-white/10 text-white focus:border-cyan-500/50" />
-                      <Select>
-                        <SelectTrigger className="bg-white/5 border-white/10 text-white focus:border-cyan-500/50">
-                          <SelectValue placeholder="Select a subject" />
-                        </SelectTrigger>
-                        <SelectContent className="bg-neutral-900 border-white/10 text-white">
-                          <SelectItem value="general">General Inquiry</SelectItem>
-                          <SelectItem value="support">Technical Support</SelectItem>
-                          <SelectItem value="sales">Sales</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <Textarea placeholder="Your Message" className="bg-white/5 border-white/10 text-white focus:border-cyan-500/50 min-h-[120px]" />
-                      <Button className="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-bold tracking-widest uppercase">
-                        Send Message
-                      </Button>
-                    </form>
+                    {/* Right Side: The Form Logic */}
+                    <div>
+                      <ContactForm />
+                    </div>
                   </div>
                 )}
 
