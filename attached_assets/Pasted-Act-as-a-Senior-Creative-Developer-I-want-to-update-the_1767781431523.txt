@@ -1,0 +1,70 @@
+Act as a Senior Creative Developer.
+
+I want to update the previous "Scrollytelling" project to use **REAL Online GLB Models** instead of code-generated primitives.
+
+**Objective:**
+The `Scene.jsx` should load specific `.glb` files from URLs defined in `data.js`.
+When the user scrolls, the 3D model should switch to the new URL associated with that section.
+
+### 1. Update `src/data.js`
+Modify the `sections` array.
+Instead of `modelType`, use `modelUrl`.
+Please use these **Placeholder Public URLs** for now (so the code works immediately), but add comments telling me where to put my specific medical models (Brain, Heart, etc.):
+
+```javascript
+export const sections = [
+  {
+    id: "intro",
+    title: "MediLearn",
+    description: "The Future of Medical Education.",
+    // Placeholder: A sci-fi drone/robot
+    modelUrl: "[https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/mech-drone/model.gltf](https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/mech-drone/model.gltf)", 
+    scale: 3, 
+    align: "center"
+  },
+  {
+    id: "brain",
+    title: "Interactive Brain",
+    description: "Deep dive into neural structures.",
+    // Placeholder: A brain-like shape or skull
+    modelUrl: "[https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/skull/model.gltf](https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/skull/model.gltf)", 
+    scale: 1.5,
+    align: "left"
+  },
+  {
+    id: "heart",
+    title: "Heart Simulation",
+    description: "Real-time cardiovascular monitoring.",
+    // Placeholder: Heart substitute
+    modelUrl: "[https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/heart/model.gltf](https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/heart/model.gltf)", 
+    scale: 2,
+    align: "right"
+  },
+  {
+    id: "skeleton",
+    title: "Skeletal System",
+    description: "Detailed bone structures.",
+    // Placeholder: Skeleton (Code should allow replacing this link)
+    modelUrl: "[https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/korrigan-wolf/model.gltf](https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/korrigan-wolf/model.gltf)", 
+    scale: 2.5,
+    align: "left"
+  },
+  {
+    id: "vr_service",
+    title: "VR Anatomy Lab",
+    description: "Immersive surgical training.",
+    // Placeholder: VR Headset substitute
+    modelUrl: "[https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/zombie-ice-cube/model.gltf](https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/zombie-ice-cube/model.gltf)", 
+    scale: 2,
+    align: "right"
+  },
+  {
+    id: "contact",
+    title: "Contact & AI",
+    description: "Chat with our medical assistant.",
+    // Placeholder: Robot
+    modelUrl: "[https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/robot-expressive/model.gltf](https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/robot-expressive/model.gltf)", 
+    scale: 1,
+    align: "center"
+  }
+];
