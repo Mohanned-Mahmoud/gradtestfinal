@@ -75,7 +75,7 @@ export const sections: Section[] = [
     modelUrl: "/skeleton.glb", 
     scale: 0.3,
     align: "right",
-    position: [-2, -2, 0],
+    position: [-2.5, -2, 0],
     type: "products"
   },
   {
