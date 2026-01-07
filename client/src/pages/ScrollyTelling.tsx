@@ -12,19 +12,18 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { MapPin, Mail, Phone, Clock } from "lucide-react";
 
 
-import React, { useState } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
-import { Send, CheckCircle } from 'lucide-react'; 
-// Assuming you have these UI components imported already:
-// import { Input, Textarea, Button, Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from './your-ui-components';
 
+import { Send, CheckCircle } from "lucide-react";
+
+// --- 1. The Contact Form Component ---
 const ContactForm = () => {
-  const [state, handleSubmit] = useForm("xldnjbrn");
-  const [subject, setSubject] = useState(""); // Local state to handle custom Select
+  const [state, handleSubmit] = useForm("xldnjbrn"); // Your Formspree ID
+  const [subject, setSubject] = useState("");
 
   if (state.succeeded) {
     return (
-      <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-6 text-center">
+      <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-6 text-center animate-in fade-in zoom-in duration-300">
         <div className="flex justify-center mb-4">
           <CheckCircle className="w-12 h-12 text-green-500" />
         </div>
@@ -63,7 +62,7 @@ const ContactForm = () => {
         <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-400 text-sm mt-1" />
       </div>
 
-      {/* Subject Select - Uses a hidden input to pass data to Formspree */}
+      {/* Subject Select - Hidden input ensures Formspree receives the value */}
       <div>
         <input type="hidden" name="subject" value={subject} />
         <Select onValueChange={(value) => setSubject(value)} required>
@@ -106,8 +105,6 @@ const ContactForm = () => {
     </form>
   );
 };
-
-export default ContactForm;
 
 export default function ScrollyTelling() {
   const [activeSectionId, setActiveSectionId] = useState(sections[0].id);
@@ -277,7 +274,7 @@ export default function ScrollyTelling() {
 
                 {section.type === "contact" && (
                   <div className="grid md:grid-cols-2 gap-12">
-                    {/* Left Side: Contact Info (Unchanged) */}
+                    {/* Left Side: Contact Info */}
                     <div className="space-y-8">
                       <div className="flex gap-4">
                         <MapPin className="text-cyan-500 w-6 h-6 shrink-0" />
@@ -309,7 +306,7 @@ export default function ScrollyTelling() {
                       </div>
                     </div>
                     
-                    {/* Right Side: The Form Logic */}
+                    {/* Right Side: Integrated Contact Form */}
                     <div>
                       <ContactForm />
                     </div>
