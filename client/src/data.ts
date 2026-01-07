@@ -116,60 +116,63 @@ export const sections: Section[] = [
 
 export const interactiveFeatures = [
   {
-    title: "High-Fidelity 3D Neurological Models",
-    description: "Explore the human brain with unparalleled depth. Functionality includes lobe isolation, synaptic pathway visualization, and Circle of Willis blood flow simulation. Toggle between healthy and pathological states (e.g., stroke, tumor) to visualize clinical impacts."
+    title: "Seamless 3D-Mobile Integration",
+    description: "A high-performance bridge connecting the native user interface with the embedded 3D rendering engine. Interacting with anatomical models instantly updates clinical data overlays, while UI controls trigger complex 3D animations in real-time."
   },
   {
-    title: "Cardiovascular Dynamics Engine",
-    description: "Visualize the human heart in motion. Examine the electrical conduction system (SA/AV nodes), observe valve mechanics during systole/diastole, and simulate hemodynamic pressure changes. Includes 4K texture mapping for realistic tissue representation."
+    title: "High-Precision Medical AI",
+    description: "Powered by a specialized Large Language Model fine-tuned via reinforcement learning. The system delivers clinically accurate answers with a significant increase in diagnostic reasoning capabilities compared to standard baseline models."
   },
   {
-    title: "Clinical AI Diagnostic Assistant",
-    description: "Get instant, evidence-based answers to complex medical questions. Our AI is trained on PubMed-indexed literature and standard clinical guidelines. It can generate differential diagnoses, explain pathophysiology, and create custom quizzes for active recall."
+    title: "Intelligent Adaptive Curriculum",
+    description: "Utilizes advanced probabilistic algorithms to track learning parameters for every topic. The engine dynamically estimates your hidden proficiency level and adjusts the difficulty of questions in real-time to optimize retention."
   }
 ];
 
 export const products: Product[] = [
   {
     id: "web-demo",
-    name: "MediLearn Web Suite",
-    description: "The core of our platform, accessible directly from any modern browser without heavy installations.",
-    status: "Free Access",
+    name: "Web Learning Portal",
+    description: "A high-performance dashboard designed for global low-latency access, serving as the central hub for student analytics and content review.",
+    status: "Live Deployment",
     features: [
-      "Full System Anatomy Viewer (Skeletal, Muscular, Nervous)",
-      "Cross-Sectional Cutting & Dissection Tools",
-      "Cloud-Synced Study Notes & Bookmarks",
-      "Multi-Language Support (EN, ES, FR, AR)",
-      "Context-Aware Labeling System",
-      "Compatible with Chrome, Firefox, Safari & Edge"
+      "Real-time Proficiency Analytics",
+      "Cross-Platform Session Sync",
+      "Context-Aware Chat Generation",
+      "Browser-Based 3D Visualization",
+      "Responsive Medical Dashboard",
+      "Instant Content Delivery"
     ],
     cta: "Launch Web Portal"
   },
   {
     id: "vr-experience",
-    name: "MediLearn XR Pro",
-    description: "The ultimate immersive experience for medical schools and simulation centers.",
-    status: "Enterprise License",
+    name: "Immersive VR Lab",
+    description: "A fully immersive simulation environment optimized for standalone headsets, ensuring high frame rates during complex anatomical rendering.",
+    status: "Headset Optimized",
     features: [
-      "1:1 Scale Virtual Cadaver Dissection",
-      "Multi-User Classrooms (Professor & Student Mode)",
-      "Haptic Feedback Support for Surgical Tools",
-      "Procedural Pathology Generation",
-      "Optimized for Meta Quest",
+      "High-Fidelity Anatomical Rendering",
+      "Hand-Tracking & Controller Support",
+      "Real-time Collision Detection",
+      "Seamless Session Synchronization",
+      "Multi-Sensory Learning Environment",
+      "Spatial Audio Feedback"
     ],
-    cta: "Request VR Kit"
+    cta: "View VR Specs"
   },
   {
     id: "ai-mobile",
-    name: "MediLearn Companion App",
-    description: "A lightweight, powerful tool designed for quick reference and spaced repetition learning.",
-    status: "Available on App Stores",
+    name: "Native Companion App",
+    description: "A native mobile experience featuring offline capabilities and a specialized interface for reading complex medical explanations on the go.",
+    status: "Mobile Optimized",
     features: [
-      "Daily Spaced Repetition Quizzes",
-      "Voice-Activated Search & Navigation",
-      "OCR Scanner for Textbook Diagrams",
-      "Seamless Sync with Web Platform"
+      "Embedded 3D Model Viewer",
+      "Markdown-Formatted Medical Chat",
+      "Offline-Capable Architecture",
+      "Biometric Authentication Support",
+      "Interactive Anatomical Overlays",
+      "On-Demand AI Tutoring"
     ],
-    cta: "Get Android App"
+    cta: "Download App"
   }
 ];
