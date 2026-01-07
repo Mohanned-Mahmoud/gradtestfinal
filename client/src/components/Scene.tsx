@@ -95,10 +95,10 @@ export default function Scene({ activeSectionId }: SceneProps) {
         <color attach="background" args={['#020202']} />
         <fog attach="fog" args={['#020202', 5, 25]} />
         
-        <ambientLight intensity={0.1} />
-        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={3} color="#00ffff" />
-        <pointLight position={[-10, -10, -10]} intensity={2} color="#ff00ff" />
-        <directionalLight position={[0, 5, 0]} intensity={0.5} />
+        <ambientLight intensity={0.5} />
+        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={6} color="#00ffff" />
+        <pointLight position={[-10, -10, -10]} intensity={4} color="#ff00ff" />
+        <directionalLight position={[0, 5, 0]} intensity={1.5} />
         
         <Suspense fallback={<Loader />}>
           {sections.map((section) => {
@@ -149,7 +149,7 @@ export default function Scene({ activeSectionId }: SceneProps) {
         </Suspense>
         
         <ContactShadows resolution={1024} scale={20} blur={3} opacity={0.5} far={10} color="#000000" />
-        <Environment preset="night" />
+        <Environment preset="sunset" />
       </Canvas>
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.6)_100%)]" />
     </div>
