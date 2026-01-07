@@ -24,11 +24,36 @@ export interface Section {
   position?: [number, number, number];
 }
 
+export interface Feature {
+  title: string;
+  description: string;
+}
+
+export interface Product {
+  id: string;
+  name: string;
+  description: string;
+  status: string;
+  features: string[];
+  cta: string;
+}
+
+export interface Section {
+  id: string;
+  title: string;
+  description: string;
+  modelUrl: string;
+  scale: number;
+  align: "left" | "center" | "right";
+  type?: "standard" | "products" | "features" | "contact";
+  position?: [number, number, number];
+}
+
 export const sections: Section[] = [
   {
     id: "home",
     title: "Revolutionary Medical Education Through Technology",
-    description: "Experience interactive 3D models and AI-powered learning to enhance your medical knowledge and skills.",
+    description: "Welcome to the future of anatomical study. We bridge the gap between theoretical textbooks and clinical practice using high-fidelity 3D rendering and adaptive AI. Experience a learning environment where interactive models, real-time pathology simulation, and AI-powered assessments converge to enhance your medical retention and diagnostic skills by over 40%.",
     modelUrl: "/blood.glb",
     scale: 3.5, 
     align: "center",
@@ -36,8 +61,8 @@ export const sections: Section[] = [
   },
   {
     id: "learning-features",
-    title: "Interactive Learning Features",
-    description: "Explore our cutting-edge features designed to transform medical education through immersive 3D visualization and AI technology.",
+    title: "Interactive Learning Ecosystem",
+    description: "Gone are the days of static diagrams. Explore our cutting-edge suite designed to transform medical education through immersive visualization. From micro-anatomy of blood cells to systemic physiological responses, our platform utilizes Physically Based Rendering (PBR) to deliver photorealistic textures and lighting, ensuring you learn on the most accurate digital twins available.",
     modelUrl: "/blood.glb", 
     scale: 2.5,
     align: "left",
@@ -45,20 +70,18 @@ export const sections: Section[] = [
   },
   {
     id: "products",
-    title: "Our Products",
-    description: "Discover our range of innovative medical education solutions designed to enhance learning through interactive technology.",
+    title: "Our Comprehensive Solutions",
+    description: "Discover our full ecosystem of innovative medical education solutions. Whether you are a student needing quick mobile revision, a professor conducting a lecture via the web, or a institution setting up a fully immersive VR simulation lab, we have a tailored platform designed to integrate seamlessly into your curriculum.",
     modelUrl: "/skeleton.glb", 
     scale: 0.2,
     align: "right",
-    // move it abet lower 
     position: [-2, -2, 0],
-    
     type: "products"
   },
   {
     id: "try-features",
-    title: "Try Our Features",
-    description: "Experience our interactive medical education tools firsthand. Explore 3D models and interact with our AI assistant.",
+    title: "Experience the Technology",
+    description: "Don't just read about it—experience our interactive tools firsthand. This sandbox environment allows you to manipulate 3D models in real-time with zero latency. Test the rotation mechanics, explore the deep-zoom capabilities, and interact with our AI assistant to see how it answers complex clinical queries instantly.",
     modelUrl: "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Box/glTF-Binary/Box.glb", 
     scale: 2.5,
     align: "left",
@@ -66,8 +89,8 @@ export const sections: Section[] = [
   },
   {
     id: "contact",
-    title: "Contact Us",
-    description: "Have questions or need more information? We're here to help you get the most out of MediLearn.",
+    title: "Partner With Us",
+    description: "Are you representing a medical university, a hospital training program, or an ed-tech investor? We are here to help you integrate MediLearn into your infrastructure. Contact our dedicated support team for API access, bulk licensing, or to request a personalized demonstration of our enterprise capabilities.",
     modelUrl: "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoomBox/glTF-Binary/BoomBox.glb", 
     scale: 50,
     align: "center",
@@ -75,16 +98,16 @@ export const sections: Section[] = [
   },
   {
     id: "vr-experience",
-    title: "VR Experience",
-    description: "Immersive anatomical exploration in virtual reality.",
+    title: "Immersive VR Simulation",
+    description: "Step inside the human body with our Meta Quest optimized application. Perform virtual dissections, practice surgical procedures in a risk-free environment, and visualize complex spatial relationships that are impossible to grasp on 2D screens. Supports hand-tracking for intuitive manipulation.",
     modelUrl: "/Quest3.glb",
     scale: 6,
     align: "center"
   },
   {
     id: "ai-mobile",
-    title: "AI Mobile",
-    description: "Your AI-powered medical tutor on the go.",
+    title: "AI Pocket Tutor",
+    description: "Your medical education never stops. Our mobile application brings the power of a university lab to your pocket. Featuring offline mode for study on the go, AR overlay capabilities, and a personalized AI tutor that adapts quizzes based on your weak points.",
     modelUrl: "/phone.glb",
     scale: 4,
     align: "center"
@@ -93,62 +116,60 @@ export const sections: Section[] = [
 
 export const interactiveFeatures = [
   {
-    title: "3D Brain Model",
-    description: "Explore the human brain in interactive 3D. Rotate, zoom, and identify different regions with detailed annotations."
+    title: "High-Fidelity 3D Neurological Models",
+    description: "Explore the human brain with unparalleled depth. Functionality includes lobe isolation, synaptic pathway visualization, and Circle of Willis blood flow simulation. Toggle between healthy and pathological states (e.g., stroke, tumor) to visualize clinical impacts."
   },
   {
-    title: "3D Heart Model",
-    description: "Visualize the human heart in detailed 3D. Examine chambers, valves, and blood flow with interactive features."
+    title: "Cardiovascular Dynamics Engine",
+    description: "Visualize the human heart in motion. Examine the electrical conduction system (SA/AV nodes), observe valve mechanics during systole/diastole, and simulate hemodynamic pressure changes. Includes 4K texture mapping for realistic tissue representation."
   },
   {
-    title: "Medical AI Chatbot",
-    description: "Get instant answers to medical questions with our AI-powered chatbot trained on medical literature."
+    title: "Clinical AI Diagnostic Assistant",
+    description: "Get instant, evidence-based answers to complex medical questions. Our AI is trained on PubMed-indexed literature and standard clinical guidelines. It can generate differential diagnoses, explain pathophysiology, and create custom quizzes for active recall."
   }
 ];
 
 export const products: Product[] = [
   {
     id: "web-demo",
-    name: "MediLearn Web Demo",
-    description: "Try our interactive tools directly in your browser.",
-    status: "Free Demo",
+    name: "MediLearn Web Suite",
+    description: "The core of our platform, accessible directly from any modern browser without heavy installations.",
+    status: "Free Access",
     features: [
-      "3D Brain and Heart Viewer",
-      "Zoom, Rotate & Explore Tools",
-      "Label Hover and Info Panels",
-      "Web-Based Chat Assistant",
-      "No Installation Needed",
-      "Compatible with All Devices"
+      "Full System Anatomy Viewer (Skeletal, Muscular, Nervous)",
+      "Cross-Sectional Cutting & Dissection Tools",
+      "Cloud-Synced Study Notes & Bookmarks",
+      "Multi-Language Support (EN, ES, FR, AR)",
+      "Context-Aware Labeling System",
+      "Compatible with Chrome, Firefox, Safari & Edge"
     ],
-    cta: "Try Web Demo"
+    cta: "Launch Web Portal"
   },
   {
     id: "vr-experience",
-    name: "MediLearn VR Experience",
-    description: "Immersive anatomical exploration in virtual reality.",
-    status: "Available on request",
+    name: "MediLearn XR Pro",
+    description: "The ultimate immersive experience for medical schools and simulation centers.",
+    status: "Enterprise License",
     features: [
-      "Interactive 3D Organ Disassembly",
-      "Controller-Based Navigation",
-      "Real-Time Labeling & Highlighting",
-      "Oculus Quest 2 / Meta XR Compatible",
-      "Voice-Assisted AI Tutor",
-      "Ideal for Classrooms & Labs"
+      "1:1 Scale Virtual Cadaver Dissection",
+      "Multi-User Classrooms (Professor & Student Mode)",
+      "Haptic Feedback Support for Surgical Tools",
+      "Procedural Pathology Generation",
+      "Optimized for Meta Quest",
     ],
-    cta: "Launch VR App"
+    cta: "Request VR Kit"
   },
   {
     id: "ai-mobile",
-    name: "MediLearn AI Mobile",
-    description: "Your AI-powered medical tutor on the go.",
-    status: "Free Download",
+    name: "MediLearn Companion App",
+    description: "A lightweight, powerful tool designed for quick reference and spaced repetition learning.",
+    status: "Available on App Stores",
     features: [
-      "AI Chatbot for Medical Q&A",
-      "iOS and Android Support",
-      "Contextual Study Recommendations",
-      "Medical Condition Explanations",
-      "Built for Mobility and Speed"
+      "Daily Spaced Repetition Quizzes",
+      "Voice-Activated Search & Navigation",
+      "OCR Scanner for Textbook Diagrams",
+      "Seamless Sync with Web Platform"
     ],
-    cta: "Download Now"
+    cta: "Get Android App"
   }
 ];
