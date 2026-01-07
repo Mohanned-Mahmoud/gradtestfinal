@@ -73,7 +73,7 @@ export const sections: Section[] = [
     title: "Our Comprehensive Solutions",
     description: "Discover our full ecosystem of innovative medical education solutions. Whether you are a student needing quick mobile revision, a professor conducting a lecture via the web, or a institution setting up a fully immersive VR simulation lab, we have a tailored platform designed to integrate seamlessly into your curriculum.",
     modelUrl: "/skeleton.glb", 
-    scale: 0.4,
+    scale: 0.3,
     align: "right",
     position: [-2, -2, 0],
     type: "products"
