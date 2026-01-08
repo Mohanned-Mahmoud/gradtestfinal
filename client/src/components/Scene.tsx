@@ -34,8 +34,12 @@ function Model({ url, scale, position, isActive, rotation }: ModelProps) {
         const maxScroll = scrollHeight - clientHeight;
         const scrollOffset = scrollY / (maxScroll || 1);
         const baseRotation = rotation || [0, 0, 0];
+        // Slow down rotation for Quest3 (VR) and phone (mobile) models
+        const rotationFactor = (normalizedUrl.includes('quest3') || normalizedUrl.includes('phone'))
+          ? Math.PI * 2 // slower spin for VR and mobile pages
+          : Math.PI * 4;
         ref.current.rotation.x = baseRotation[0];
-        ref.current.rotation.y = baseRotation[1] + scrollOffset * Math.PI * 4;
+        ref.current.rotation.y = baseRotation[1] + scrollOffset * rotationFactor;
         ref.current.rotation.z = baseRotation[2];
       }
       
