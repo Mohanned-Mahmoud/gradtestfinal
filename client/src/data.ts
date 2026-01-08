@@ -125,10 +125,10 @@ export const products: Product[] = [
     description: "A high-performance dashboard serving as the central hub for student analytics, 3D previews, and content review.",
     status: "Live Deployment",
     features: [
-      "**Cross-Platform Session Sync**",
-      "**Context-Aware Chat Generation**",
-      "**Responsive Medical Dashboard**",
-      "**Instant Content Delivery**"
+      "Cross-Platform Session Sync",
+      "Context-Aware Chat Generation",
+      "Responsive Medical Dashboard",
+      "Instant Content Delivery"
     ],
     cta: "Launch Web Portal"
   },
