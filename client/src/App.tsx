@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import LoadingOverlay from "@/components/LoadingOverlay";
+import GlobalAssetLoader from "@/components/GlobalAssetLoader";
 import { LoadingProvider } from "@/context/LoadingContext";
 import NotFound from "@/pages/not-found";
 import ScrollyTelling from "@/pages/ScrollyTelling";
@@ -32,6 +33,8 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <LoadingProvider>
         <TooltipProvider>
+          {/* Hidden canvas to preload all GLTF assets and report progress */}
+          <GlobalAssetLoader />
           <LoadingOverlay />
           <Toaster />
           <Router />
