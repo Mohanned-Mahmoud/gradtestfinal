@@ -22,6 +22,7 @@ export interface Section {
   align: "left" | "center" | "right";
   type?: "standard" | "products" | "features" | "contact";
   position?: [number, number, number];
+  rotation?: [number, number, number];
 }
 
 export interface Feature {
@@ -47,6 +48,7 @@ export interface Section {
   align: "left" | "center" | "right";
   type?: "standard" | "products" | "features" | "contact";
   position?: [number, number, number];
+  rotation?: [number, number, number];
 }
 
 export const sections: Section[] = [
@@ -86,7 +88,7 @@ export const sections: Section[] = [
     scale: 2.5,
     align: "left",
     type: "standard",
-    position: [0, -2.5, 0]
+    position: [1, -2.5, 0]
   },
   {
     id: "contact",
@@ -95,7 +97,8 @@ export const sections: Section[] = [
     modelUrl: "logo2.glb", 
     scale: -3,
     align: "center",
-    type: "contact"
+    type: "contact",
+    rotation: [0, Math.PI, 0]
   },
   {
     id: "vr-experience",
