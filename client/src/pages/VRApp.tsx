@@ -19,7 +19,7 @@ export default function VRApp() {
 
   return (
     <div className="relative min-h-screen bg-[#020202] text-white overflow-hidden">
-      <div className="fixed inset-0 z-0 opacity-60">
+      <div className="fixed inset-0 z-0 opacity-70">
         <Scene activeSectionId="vr-experience" />
       </div>
 
