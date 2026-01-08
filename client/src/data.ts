@@ -116,7 +116,7 @@ export const sections: Section[] = [
     scale: 3,
     align: "center",
     type: "contact",
-    rotation: [0, Math.PI, 0]
+    rotation: [0, Math.PI * 2.5, 0]
   },
 ];
 
