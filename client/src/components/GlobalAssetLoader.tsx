@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { useGLTF, useProgress } from '@react-three/drei';
 import { sections } from '@/data';
@@ -13,9 +13,34 @@ function GLTFPreloader({ url }: { url: string }) {
 export default function GlobalAssetLoader() {
   const { active, progress } = useProgress();
   const { setIsLoadingAssets } = useLoading();
+  const hideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    setIsLoadingAssets(active || progress < 100);
+    const isCurrentlyLoading = active || progress < 100;
+
+    if (isCurrentlyLoading) {
+      // Cancel any pending hide and ensure overlay is shown
+      if (hideTimerRef.current) {
+        clearTimeout(hideTimerRef.current);
+        hideTimerRef.current = null;
+      }
+      setIsLoadingAssets(true);
+    } else {
+      // Add a small delay before hiding to prevent flicker
+      if (!hideTimerRef.current) {
+        hideTimerRef.current = setTimeout(() => {
+          setIsLoadingAssets(false);
+          hideTimerRef.current = null;
+        }, 1200); // adjustable hold duration
+      }
+    }
+
+    return () => {
+      if (hideTimerRef.current) {
+        clearTimeout(hideTimerRef.current);
+        hideTimerRef.current = null;
+      }
+    };
   }, [active, progress, setIsLoadingAssets]);
 
   return (
