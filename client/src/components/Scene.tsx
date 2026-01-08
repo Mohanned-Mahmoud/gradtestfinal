@@ -87,7 +87,7 @@ interface SceneProps {
 
 export function LoadingScreen({ progress }: { progress: number }) {
   return (
-    <div className="fixed inset-0 z-[9999] bg-[#020202] flex items-center justify-center">
+    <div className="fixed inset-0 z-50 bg-[#020202] flex items-center justify-center">
       <div className="flex flex-col items-center gap-6">
         <div className="relative w-24 h-24">
           <div className="absolute inset-0 border-4 border-cyan-500/20 rounded-full" />

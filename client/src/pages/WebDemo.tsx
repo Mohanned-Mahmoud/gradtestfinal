@@ -74,8 +74,6 @@ export default function WebDemo() {
   return (
     <div className="relative min-h-screen bg-[#020202] text-white flex flex-col h-screen overflow-hidden">
       {isLoading && <LoadingScreen progress={loadingProgress} />}
-      {!isLoading && (
-        <>
       <div className="fixed inset-0 z-0 opacity-40 pointer-events-none">
         <Scene activeSectionId={activeModel === 'brain' ? "learning-features" : "products"} onLoaded={handleLoadComplete} />
       </div>
@@ -209,6 +207,6 @@ export default function WebDemo() {
           </TabsContent>
         </Tabs>
       </main>
-        </>\n      )}\n    </div>
+    </div>
   );
 }
