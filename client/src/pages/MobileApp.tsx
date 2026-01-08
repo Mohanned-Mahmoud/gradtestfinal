@@ -1,12 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLocation } from "wouter";
 import { Smartphone, Bell, MessageSquare, Zap, Download, ShieldCheck, Cpu, Globe } from "lucide-react";
-import Scene from "../components/Scene";
+import Scene, { LoadingScreen } from "../components/Scene";
 
 export default function MobileApp() {
   const [, setLocation] = useLocation();
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+
+  useEffect(() => {
+    if (isLoading) {
+      const interval = setInterval(() => {
+        setLoadingProgress(prev => {
+          if (prev >= 95) {
+            clearInterval(interval);
+            return prev;
+          }
+          return prev + Math.random() * 10;
+        });
+      }, 200);
+      return () => clearInterval(interval);
+    }
+  }, [isLoading]);
+
+  const handleLoadComplete = () => {
+    setLoadingProgress(100);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+  };
 
   const features = [
     { icon: <MessageSquare className="text-cyan-500" />, title: "AI Medical Tutor", description: "Natural language processing trained on medical literature for complex academic queries." },
@@ -20,8 +44,9 @@ export default function MobileApp() {
 
   return (
     <div className="relative min-h-screen bg-[#020202] text-white overflow-hidden">
+      {isLoading && <LoadingScreen progress={loadingProgress} />}
       <div className="fixed inset-0 z-0 opacity-60">
-        <Scene activeSectionId="ai-mobile" />
+        <Scene activeSectionId="ai-mobile" onLoaded={handleLoadComplete} />
       </div>
       
       <div className="relative z-10 p-8 h-screen overflow-y-auto scrollbar-hide">

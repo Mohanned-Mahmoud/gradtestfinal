@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { useLocation } from "wouter";
-import Scene from "../components/Scene";
+import Scene, { LoadingScreen } from "../components/Scene";
 import { Badge } from "@/components/ui/badge";
 import { Activity, Brain, Heart, Info, Send, User } from "lucide-react";
 
@@ -17,6 +17,30 @@ export default function WebDemo() {
   const [activeModel, setActiveModel] = useState<"brain" | "heart">("brain");
   const [isTyping, setIsTyping] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+
+  useEffect(() => {
+    if (isLoading) {
+      const interval = setInterval(() => {
+        setLoadingProgress(prev => {
+          if (prev >= 95) {
+            clearInterval(interval);
+            return prev;
+          }
+          return prev + Math.random() * 10;
+        });
+      }, 200);
+      return () => clearInterval(interval);
+    }
+  }, [isLoading]);
+
+  const handleLoadComplete = () => {
+    setLoadingProgress(100);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+  };
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -49,8 +73,9 @@ export default function WebDemo() {
 
   return (
     <div className="relative min-h-screen bg-[#020202] text-white flex flex-col h-screen overflow-hidden">
+      {isLoading && <LoadingScreen progress={loadingProgress} />}
       <div className="fixed inset-0 z-0 opacity-40 pointer-events-none">
-        <Scene activeSectionId={activeModel === 'brain' ? "learning-features" : "products"} />
+        <Scene activeSectionId={activeModel === 'brain' ? "learning-features" : "products"} onLoaded={handleLoadComplete} />
       </div>
 
       <header className="relative z-20 px-8 py-4 border-b border-white/5 flex justify-between items-center backdrop-blur-md sticky top-0 bg-black/60">
