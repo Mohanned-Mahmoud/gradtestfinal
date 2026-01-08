@@ -6,7 +6,8 @@ import { sections } from '../data';
 // IDs listed here will be downloaded FIRST, in this exact order.
 const PRIORITY_IDS = [
   "home",           // 1. The Hero/First model (Critical)
-   "products",        // 4. Skeleton
+  "try-features",  
+  "products",        // 4. Skeleton
   "vr-experience",  // 2. Big VR headset model (Maybe you want this ready fast)
   "ai-mobile"      // 3. The Phone model
  

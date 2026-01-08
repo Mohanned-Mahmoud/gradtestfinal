@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import Scene from "../components/Scene";
+import React, { useEffect } from "react";
 import { sections, products, interactiveFeatures } from "../data";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useLocation } from "wouter";
@@ -10,11 +9,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { MapPin, Mail, Phone, Clock } from "lucide-react";
-
-
 import { useForm, ValidationError } from '@formspree/react';
-
 import { Send, CheckCircle } from "lucide-react";
+import { useState } from "react";
+
+// Add this prop interface
+interface ScrollyTellingProps {
+  onSectionChange: (id: string) => void;
+}
 
 // --- 1. The Contact Form Component ---
 const ContactForm = () => {
@@ -106,8 +108,7 @@ const ContactForm = () => {
   );
 };
 
-export default function ScrollyTelling() {
-  const [activeSectionId, setActiveSectionId] = useState(sections[0].id);
+export default function ScrollyTelling({ onSectionChange }: ScrollyTellingProps) {
   const [, setLocation] = useLocation();
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -128,7 +129,8 @@ export default function ScrollyTelling() {
             scrollPosition >= offsetTop &&
             scrollPosition < offsetTop + offsetHeight
           ) {
-            setActiveSectionId(section.id);
+            // ✅ Notify the parent (App) instead of setting local state
+            onSectionChange(section.id);
             break;
           }
         }
@@ -137,7 +139,7 @@ export default function ScrollyTelling() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [onSectionChange]); // Add dependency
 
   return (
     <div className="relative w-full bg-[#020202] text-white selection:bg-cyan-500/30 font-sans">
@@ -174,18 +176,16 @@ export default function ScrollyTelling() {
             aria-label={`Scroll to ${section.title}`}
           >
             <div className={`w-[2px] transition-all duration-700 ${
-              activeSectionId === section.id ? "h-8 bg-cyan-400" : "h-4 bg-white/10 group-hover:bg-white/30"
+              false ? "h-8 bg-cyan-400" : "h-4 bg-white/10 group-hover:bg-white/30"
             }`} />
             <span className={`absolute left-4 text-[10px] tracking-widest uppercase transition-all duration-500 whitespace-nowrap ${
-              activeSectionId === section.id ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
+              false ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
             }`}>
               0{idx + 1} // {section.id}
             </span>
           </button>
         ))}
       </nav>
-
-      <Scene activeSectionId={activeSectionId} />
 
       <main className="relative z-10 w-full">
         {sections.map((section) => (

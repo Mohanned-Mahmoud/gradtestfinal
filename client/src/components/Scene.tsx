@@ -77,13 +77,14 @@ class ModelErrorBoundary extends Component<{ children: React.ReactNode, fallback
 
 interface SceneProps {
   activeSectionId: string;
+  className?: string;
 }
 
-export default function Scene({ activeSectionId }: SceneProps) {
+export default function Scene({ activeSectionId, className }: SceneProps) {
   // ❌ DELETED: The useEffect loop that was forcing all downloads at once
 
   return (
-    <div className="fixed inset-0 z-0 bg-[#020202]">
+    <div className={`fixed inset-0 z-0 bg-[#020202] transition-opacity duration-500 ${className || ''}`}>
       <Canvas camera={{ position: [0, 0, 8], fov: 35 }} dpr={[1, 2]}>
         <color attach="background" args={['#020202']} />
         <fog attach="fog" args={['#020202', 5, 25]} />
