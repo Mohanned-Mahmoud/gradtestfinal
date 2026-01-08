@@ -1,11 +1,9 @@
-import React, { useRef, useEffect, Suspense, Component } from 'react';
+import React, { useRef, Suspense, Component } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { useGLTF, Environment, ContactShadows, Html, Float } from '@react-three/drei';
+import { useGLTF, Environment, ContactShadows, Html } from '@react-three/drei';
 import { sections } from '../data';
 
-
-// 🚀 Preload the Hero model (Section 1) immediately!
-// This starts the network request before the component even mounts.
+// ✅ Keep this. Preload ONLY the first model so the landing page is instant.
 useGLTF.preload(sections[0].modelUrl);
 
 interface ModelProps {
@@ -24,13 +22,10 @@ function Model({ url, scale, position, isActive, rotation }: ModelProps) {
 
   useFrame((state) => {
     if (ref.current) {
-      // Slow auto-rotation for specific models
       if (normalizedUrl.includes('duck') || normalizedUrl.includes('blood.glb')) {
         ref.current.rotation.y += 0.005;
         ref.current.rotation.z += 0.002;
       } else {
-        // Rotation depends on scroll position of either the window or the closest scrolling parent
-        // For the WebDemo, we check for both the window and the demo-specific scroll container
         const scrollContainer = document.querySelector('.overflow-y-auto') || document.documentElement;
         const scrollY = scrollContainer.scrollTop || window.scrollY;
         const scrollHeight = scrollContainer.scrollHeight || document.documentElement.scrollHeight;
@@ -44,8 +39,8 @@ function Model({ url, scale, position, isActive, rotation }: ModelProps) {
         ref.current.rotation.z = baseRotation[2];
       }
       
-      // Manual smoothing for scale
       const targetScale = isActive ? scale : 0;
+      // Faster lerp for snappier feel
       ref.current.scale.lerp({ x: targetScale, y: targetScale, z: targetScale } as any, 0.1);
     }
   });
@@ -55,20 +50,15 @@ function Model({ url, scale, position, isActive, rotation }: ModelProps) {
       ref={ref} 
       object={scene} 
       position={position}
+      // Hide completely if scale is tiny to save GPU
       visible={isActive || (ref.current && ref.current.scale.x > 0.01)}
     />
   );
 }
 
-function Loader() {
-  return (
-    <Html center>
-      <div className="flex flex-col items-center gap-4">
-        <div className="w-12 h-12 border-4 border-cyan-500/20 border-t-cyan-500 rounded-full animate-spin" />
-        <span className="text-cyan-500 font-mono text-[10px] tracking-[0.3em] uppercase opacity-50">Loading Assets</span>
-      </div>
-    </Html>
-  );
+// A smaller, non-intrusive loader for individual sections
+function MiniLoader() {
+  return null; // Return null to make loading invisible, or a tiny spinner if you prefer
 }
 
 class ModelErrorBoundary extends Component<{ children: React.ReactNode, fallback?: React.ReactNode }, { hasError: boolean }> {
@@ -79,9 +69,7 @@ class ModelErrorBoundary extends Component<{ children: React.ReactNode, fallback
   static getDerivedStateFromError() { return { hasError: true }; }
   render() {
     if (this.state.hasError) {
-      return this.props.fallback || (
-        <mesh><boxGeometry /><meshStandardMaterial color="#22d3ee" wireframe /></mesh>
-      );
+      return this.props.fallback || null;
     }
     return this.props.children;
   }
@@ -92,11 +80,7 @@ interface SceneProps {
 }
 
 export default function Scene({ activeSectionId }: SceneProps) {
-  useEffect(() => {
-    sections.forEach(section => {
-      useGLTF.preload(section.modelUrl);
-    });
-  }, []);
+  // ❌ DELETED: The useEffect loop that was forcing all downloads at once
 
   return (
     <div className="fixed inset-0 z-0 bg-[#020202]">
@@ -109,54 +93,48 @@ export default function Scene({ activeSectionId }: SceneProps) {
         <pointLight position={[-10, -10, -10]} intensity={4} color="#ff00ff" />
         <directionalLight position={[0, 5, 0]} intensity={1.5} />
         
-        <Suspense fallback={<Loader />}>
-          {sections.map((section) => {
+        {sections.map((section) => {
             const modelX = section.align === 'left' ? 2.5 : section.align === 'right' ? -2.5 : 0;
-            
-            if (section.id === 'home' && activeSectionId === 'home') {
+            const isHome = section.id === 'home';
+
+            // Special logic for Home (Ducks)
+            if (isHome && activeSectionId === 'home') {
               return (
                 <group key="home-ducks">
-                  <ModelErrorBoundary fallback={<mesh><boxGeometry /><meshStandardMaterial color="#22d3ee" wireframe /></mesh>}>
-                    <Model 
-                      url={section.modelUrl} 
-                      scale={section.scale}
-                      position={[0, -0.5, 0]} 
-                      isActive={true}
-                    />
-                  </ModelErrorBoundary>
-                  <ModelErrorBoundary fallback={null}>
-                    <Model 
-                      url={section.modelUrl} 
-                      scale={section.scale * 0.4}
-                      position={[-2, 1.5, -2]} 
-                      isActive={true}
-                    />
-                  </ModelErrorBoundary>
-                  <ModelErrorBoundary fallback={null}>
-                    <Model 
-                      url={section.modelUrl} 
-                      scale={section.scale * 0.6}
-                      position={[2, -1, -1]} 
-                      isActive={true}
-                    />
-                  </ModelErrorBoundary>
+                  {/* Home gets its own Suspense so it renders FIRST */}
+                  <Suspense fallback={null}>
+                    <ModelErrorBoundary>
+                        <Model 
+                        url={section.modelUrl} 
+                        scale={section.scale}
+                        position={[0, -0.5, 0]} 
+                        isActive={true}
+                        />
+                         {/* Extra decorative ducks */}
+                        <Model url={section.modelUrl} scale={section.scale * 0.4} position={[-2, 1.5, -2]} isActive={true} />
+                        <Model url={section.modelUrl} scale={section.scale * 0.6} position={[2, -1, -1]} isActive={true} />
+                    </ModelErrorBoundary>
+                  </Suspense>
                 </group>
               );
             }
 
+            // All other sections get their OWN individual Suspense boundary
+            // This prevents "Section 5" from blocking "Section 2"
             return (
-              <ModelErrorBoundary key={section.id} fallback={<mesh><boxGeometry /><meshStandardMaterial color="#22d3ee" wireframe /></mesh>}>
-                <Model 
-                  url={section.modelUrl} 
-                  scale={section.scale}
-                  position={section.position || [modelX, -0.5, 0]} 
-                  isActive={section.id === activeSectionId}
-                  rotation={section.rotation}
-                />
-              </ModelErrorBoundary>
+              <Suspense key={section.id} fallback={<MiniLoader />}>
+                <ModelErrorBoundary fallback={null}>
+                    <Model 
+                    url={section.modelUrl} 
+                    scale={section.scale}
+                    position={section.position || [modelX, -0.5, 0]} 
+                    isActive={section.id === activeSectionId}
+                    rotation={section.rotation}
+                    />
+                </ModelErrorBoundary>
+              </Suspense>
             );
-          })}
-        </Suspense>
+        })}
         
         <ContactShadows resolution={1024} scale={20} blur={3} opacity={0.5} far={10} color="#000000" />
         <Environment preset="sunset" />
