@@ -7,8 +7,8 @@ export default function LoadingOverlay() {
     const checkAllLoaded = () => {
       // Check if document is fully loaded
       if (document.readyState === 'complete') {
-        // Wait a bit more to ensure all 3D assets are loaded
-        setTimeout(() => setIsLoading(false), 800);
+        // Wait much longer to ensure all 3D assets are rendered
+        setTimeout(() => setIsLoading(false), 3000);
       }
     };
 
@@ -21,9 +21,13 @@ export default function LoadingOverlay() {
       document.addEventListener('readystatechange', checkAllLoaded);
     }
 
+    // Also add a fallback max timeout of 8 seconds
+    const maxTimeout = setTimeout(() => setIsLoading(false), 8000);
+
     return () => {
       window.removeEventListener('load', checkAllLoaded);
       document.removeEventListener('readystatechange', checkAllLoaded);
+      clearTimeout(maxTimeout);
     };
   }, []);
 
