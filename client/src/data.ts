@@ -54,27 +54,17 @@ export interface Section {
 export const sections: Section[] = [
   {
     id: "home",
-    title: "Experience Anatomy. Don't Just Memorize It.",
-    description: "The first educational platform that fuses high-fidelity Virtual Reality with an intelligent, adaptive AI Tutor. Explore the human body in 3D, master complex concepts with personalized guidance, and bridge the gap between theory and clinical practice.",
+    title: "Revolutionary Medical Education Through Technology",
+    description: "Welcome to the future of anatomical study. We bridge the gap between theoretical textbooks and clinical practice using high-fidelity 3D rendering and adaptive AI. Experience a learning environment where interactive models, real-time pathology simulation, and AI-powered assessments converge to enhance your medical retention and diagnostic skills by over 40%.",
     modelUrl: "/blood.glb",
     scale: 3.5, 
     align: "center",
     type: "standard"
   },
   {
-    id: "mission",
-    title: "Why We Built MediLearn",
-    description: "Traditional anatomy education is facing a crisis. Static textbooks cannot capture the complexity of the human body, and physical lab resources are often limited. We believe medical students deserve better than passive memorization. Our mission is to transform learning by combining the immersive power of Virtual Reality with the responsiveness of Artificial Intelligence, turning anatomy from a subject you read about into a world you experience.",
-    modelUrl: "anatomy2.glb",
-    scale: 2.0,
-    align: "center",
-    type: "standard",
-    position: [0, -1.5, 0]
-  },
-  {
     id: "learning-features",
-    title: "Key Features",
-    description: "Step inside a virtual medical environment where anatomy comes to life. Study with a context-aware AI tutor, adaptive learning engine, and assessments that help you grow.",
+    title: "Interactive Learning Ecosystem",
+    description: "Gone are the days of static diagrams. Explore our cutting-edge suite designed to transform medical education through immersive visualization. From micro-anatomy of blood cells to systemic physiological responses, our platform utilizes Physically Based Rendering (PBR) to deliver photorealistic textures and lighting, ensuring you learn on the most accurate digital twins available.",
     modelUrl: "/blood.glb", 
     scale: 2.5,
     align: "left",
@@ -91,19 +81,9 @@ export const sections: Section[] = [
     type: "products"
   },
   {
-    id: "ecosystem",
-    title: "Learn Anywhere, Anytime",
-    description: "Your learning shouldn't stop when you take off the headset. We have built a unified platform that stays in sync across all your devices. Virtual Reality for deep study sessions, a Mobile Companion to review and chat with the AI tutor, and a Web Portal for quick 3D previews and profile management. Start a session in VR and finish your quiz on your phone—your learning history and difficulty profile travel with you.",
-    modelUrl: "/phone.glb",
-    scale: 4,
-    align: "center",
-    type: "standard",
-    position: [0, -1.0, 0]
-  },
-  {
     id: "try-features",
-    title: "Your Journey to Mastery",
-    description: "Log in and sync your profile. Choose Systems Mode to walk around full-body structures, or Organ Mode to dissect specific organs. Interact and ask the AI Tutor questions, then launch instant quizzes that adapt to your level.",
+    title: "Experience the Technology",
+    description: "Don't just read about it—experience our interactive tools firsthand. This sandbox environment allows you to manipulate 3D models in real-time with zero latency. Test the rotation mechanics, explore the deep-zoom capabilities, and interact with our AI assistant to see how it answers complex clinical queries instantly.",
     modelUrl: "anatomy2.glb", 
     scale: 2.5,
     align: "left",
@@ -142,24 +122,16 @@ export const sections: Section[] = [
 
 export const interactiveFeatures = [
   {
-    title: "True-to-Life Anatomical Visualization",
-    description: "Move beyond static diagrams and interact with life-sized models. Switch between Systems Mode and Organ Mode, perform interactive dissection, and peel back body layers with simple gestures."
+    title: "Seamless 3D-Mobile Integration",
+    description: "A high-performance bridge connecting the native user interface with the embedded 3D rendering engine. Interacting with anatomical models instantly updates clinical data overlays, while UI controls trigger complex 3D animations in real-time."
   },
   {
-    title: "Your Personal AI Tutor",
-    description: "Voice-first interaction with context-aware explanations. Point to any structure and ask what it does—get step-by-step reasoning tailored to your question."
+    title: "High-Precision Medical AI",
+    description: "Powered by a specialized Large Language Model fine-tuned via reinforcement learning. The system delivers clinically accurate answers with a significant increase in diagnostic reasoning capabilities compared to standard baseline models."
   },
   {
-    title: "Adaptive Learning Engine",
-    description: "Dynamic difficulty adjusts in real time based on your performance. Personalized learning paths focus on your weak areas to accelerate mastery."
-  },
-  {
-    title: "Clinical Relevance",
-    description: "Link anatomy to real-world medicine with disease associations and diagnostic context. Understand functional implications to build clinical reasoning."
-  },
-  {
-    title: "Smart Assessment & Feedback",
-    description: "Contextual quizzes launch instantly from what you are studying. Intelligent remediation explains mistakes and a performance dashboard highlights areas to review."
+    title: "Intelligent Adaptive Curriculum",
+    description: "Utilizes advanced probabilistic algorithms to track learning parameters for every topic. The engine dynamically estimates your hidden proficiency level and adjusts the difficulty of questions in real-time to optimize retention."
   }
 ];
 

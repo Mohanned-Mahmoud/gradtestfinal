@@ -351,13 +351,8 @@ export default function ScrollyTelling() {
                 {section.type === "standard" && section.id !== "try-features" && (
                   <div className="flex items-center gap-6">
                     <button className="text-[10px] tracking-[0.3em] uppercase font-bold text-cyan-500 hover:text-white transition-colors">
-                      {section.id === "home" ? "Start Your Free Web Trial" : "Start Protocol"}
+                      {section.id === "home" ? "Explore Now" : "Start Protocol"}
                     </button>
-                    {section.id === "home" && (
-                      <button className="text-[10px] tracking-[0.3em] uppercase font-bold text-neutral-400 hover:text-white transition-colors">
-                        Download for VR & Mobile
-                      </button>
-                    )}
                     <div className="h-[1px] flex-1 bg-white/5" />
                   </div>
                 )}
@@ -373,8 +368,8 @@ export default function ScrollyTelling() {
             whileInView={{ opacity: 1 }}
             className="text-center px-6 relative z-10"
           >
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter leading-[0.9] mb-12">
-              Ready to Experience the Future of Medical Training?
+            <h2 className="text-7xl md:text-[12rem] font-bold tracking-tighter leading-[0.8] mb-12">
+              BEYOND <br/> <span className="text-neutral-800">LIMITS</span>
             </h2>
             <button 
               onClick={() => setLocation("/login")}
@@ -382,7 +377,7 @@ export default function ScrollyTelling() {
             >
                <div className="absolute inset-0 bg-cyan-500 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                <span className="relative z-10 text-[10px] tracking-[0.5em] uppercase font-black group-hover:text-black transition-colors">
-                 Download for VR & Mobile
+                 Initialize Interface
                </span>
             </button>
           </motion.div>
