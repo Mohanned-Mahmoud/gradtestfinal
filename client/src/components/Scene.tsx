@@ -21,10 +21,8 @@ function Model({ url, scale, position, isActive, rotation }: ModelProps) {
     if (ref.current) {
       // Slow auto-rotation for specific models
       if (normalizedUrl.includes('duck') || normalizedUrl.includes('blood.glb')) {
-        const baseRotation = rotation || [0, 0, 0];
-        ref.current.rotation.x = baseRotation[0];
-        ref.current.rotation.y = baseRotation[1] + state.clock.elapsedTime * 0.005;
-        ref.current.rotation.z = baseRotation[2] + state.clock.elapsedTime * 0.002;
+        ref.current.rotation.y += 0.005;
+        ref.current.rotation.z += 0.002;
       } else {
         // Rotation depends on scroll position of either the window or the closest scrolling parent
         // For the WebDemo, we check for both the window and the demo-specific scroll container

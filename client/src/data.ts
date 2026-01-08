@@ -106,7 +106,8 @@ export const sections: Section[] = [
     description: "Step inside the human body with our Meta Quest optimized application. Perform virtual dissections, practice surgical procedures in a risk-free environment, and visualize complex spatial relationships that are impossible to grasp on 2D screens. Supports hand-tracking for intuitive manipulation.",
     modelUrl: "/Quest3.glb",
     scale: 9,
-    align: "center"
+    align: "center",
+    rotation: [0, Math.PI, 0]
   },
   {
     id: "ai-mobile",
