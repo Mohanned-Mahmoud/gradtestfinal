@@ -55,7 +55,7 @@ export const sections: Section[] = [
   {
     id: "home",
     title: "Revolutionary Medical Education Through Technology",
-    description: "Welcome to the future of anatomical study. We bridge the gap between theoretical textbooks and clinical practice using high-fidelity 3D rendering and adaptive AI. Experience a learning environment where interactive models, real-time pathology simulation, and AI-powered assessments converge to enhance your medical retention and diagnostic skills by over 40%.",
+    description: "The first educational platform that fuses high-fidelity Virtual Reality with an intelligent, adaptive AI Tutor. We are transforming medical education by moving beyond static textbooks and passive memorization. Explore the human body in 3D, master complex concepts, and bridge the gap between theory and clinical practice.",    
     modelUrl: "/blood.glb",
     scale: 3.5, 
     align: "center",
@@ -64,7 +64,7 @@ export const sections: Section[] = [
   {
     id: "learning-features",
     title: "Interactive Learning Ecosystem",
-    description: "Gone are the days of static diagrams. Explore our cutting-edge suite designed to transform medical education through immersive visualization. From micro-anatomy of blood cells to systemic physiological responses, our platform utilizes Physically Based Rendering (PBR) to deliver photorealistic textures and lighting, ensuring you learn on the most accurate digital twins available.",
+    description: "Step inside a virtual medical environment where anatomy comes to life. Your journey begins by choosing between Systems Mode for full-body exploration or Organ Mode for deep dissection. As you interact, our context-aware AI Tutor answers your questions in real-time, while the adaptive engine tailors instant quizzes to your proficiency level.",    
     modelUrl: "/blood.glb", 
     scale: 2.5,
     align: "left",
@@ -73,7 +73,7 @@ export const sections: Section[] = [
   {
     id: "products",
     title: "Our Comprehensive Solutions",
-    description: "Discover our full ecosystem of innovative medical education solutions. Whether you are a student needing quick mobile revision, a professor conducting a lecture via the web, or a institution setting up a fully immersive VR simulation lab, we have a tailored platform designed to integrate seamlessly into your curriculum.",
+    description: "Discover our full ecosystem. Whether you are a student needing quick mobile revision, or a university setting up a VR lab, we have a tailored platform for you.",    
     modelUrl: "/skeleton.glb", 
     scale: 0.3,
     align: "right",
@@ -91,16 +91,6 @@ export const sections: Section[] = [
     position: [3, -2.5, 0]
   },
   {
-    id: "contact",
-    title: "Partner With Us",
-    description: "Are you representing a medical university, a hospital training program, or an ed-tech investor? We are here to help you integrate MediLearn into your infrastructure. Contact our dedicated support team for API access, bulk licensing, or to request a personalized demonstration of our enterprise capabilities.",
-    modelUrl: "logo2.glb", 
-    scale: 3,
-    align: "center",
-    type: "contact",
-    rotation: [0, Math.PI, 0]
-  },
-  {
     id: "vr-experience",
     title: "Immersive VR Simulation",
     description: "Step inside the human body with our Meta Quest optimized application. Perform virtual dissections, practice surgical procedures in a risk-free environment, and visualize complex spatial relationships that are impossible to grasp on 2D screens. Supports hand-tracking for intuitive manipulation.",
@@ -112,26 +102,44 @@ export const sections: Section[] = [
   },
   {
     id: "ai-mobile",
-    title: "AI Pocket Tutor",
-    description: "Your medical education never stops. Our mobile application brings the power of a university lab to your pocket. Featuring offline mode for study on the go, AR overlay capabilities, and a personalized AI tutor that adapts quizzes based on your weak points.",
+    title: "Learn Anywhere, Anytime",
+    description: "Your learning shouldn't stop when you take off the headset. We have built a unified platform that stays in sync across all your devices. Start a session in VR and finish your quiz on your phone—your learning history and difficulty profile travel with you.",
     modelUrl: "/phone.glb",
     scale: 4,
     align: "center"
-  }
+  },  
+  {
+    id: "contact",
+    title: "Partner With Us",
+    description: "Are you representing a medical university, a hospital training program, or an ed-tech investor? We are here to help you integrate MediLearn into your infrastructure. Contact our dedicated support team for API access, bulk licensing, or to request a personalized demonstration of our enterprise capabilities.",
+    modelUrl: "logo2.glb", 
+    scale: 3,
+    align: "center",
+    type: "contact",
+    rotation: [0, Math.PI, 0]
+  },
 ];
 
 export const interactiveFeatures = [
   {
-    title: "Seamless 3D-Mobile Integration",
-    description: "A high-performance bridge connecting the native user interface with the embedded 3D rendering engine. Interacting with anatomical models instantly updates clinical data overlays, while UI controls trigger complex 3D animations in real-time."
+    title: "True-to-Life Visualization",
+    description: "Move beyond static diagrams. Switch between Systems Mode and Organ Mode, perform interactive dissection, and peel back body layers with simple gestures."
   },
   {
-    title: "High-Precision Medical AI",
-    description: "Powered by a specialized Large Language Model fine-tuned via reinforcement learning. The system delivers clinically accurate answers with a significant increase in diagnostic reasoning capabilities compared to standard baseline models."
+    title: "Your Personal AI Tutor",
+    description: "Voice-first interaction with context-aware explanations. Point to any structure and ask 'What does this do?' to get step-by-step reasoning tailored to you."
   },
   {
-    title: "Intelligent Adaptive Curriculum",
-    description: "Utilizes advanced probabilistic algorithms to track learning parameters for every topic. The engine dynamically estimates your hidden proficiency level and adjusts the difficulty of questions in real-time to optimize retention."
+    title: "Adaptive Learning Engine",
+    description: "The system monitors your progress and adjusts difficulty in real-time. It identifies your weak points and personalizes the curriculum to accelerate mastery."
+  },
+  {
+    title: "Clinical Relevance",
+    description: "Link anatomy to real-world medicine. The system explains disease associations and diagnostic contexts while you examine the relevant organs."
+  },
+  {
+    title: "Smart Assessment",
+    description: "Launch contextual quizzes instantly. If you make a mistake, the AI intervenes to explain the reasoning, turning errors into learning opportunities."
   }
 ];
 
@@ -139,13 +147,11 @@ export const products: Product[] = [
   {
     id: "web-demo",
     name: "Web Learning Portal",
-    description: "A high-performance dashboard designed for global low-latency access, serving as the central hub for student analytics and content review.",
+    description: "A high-performance dashboard serving as the central hub for student analytics, 3D previews, and content review.",
     status: "Live Deployment",
     features: [
-      "Real-time Proficiency Analytics",
       "Cross-Platform Session Sync",
       "Context-Aware Chat Generation",
-      "Browser-Based 3D Visualization",
       "Responsive Medical Dashboard",
       "Instant Content Delivery"
     ],
@@ -154,7 +160,7 @@ export const products: Product[] = [
   {
     id: "vr-experience",
     name: "Immersive VR Lab",
-    description: "A fully immersive simulation environment optimized for standalone headsets, ensuring high frame rates during complex anatomical rendering.",
+    description: "A fully immersive simulation environment optimized for standalone headsets, allowing for deep anatomical study and virtual dissection.",
     status: "Headset Optimized",
     features: [
       "High-Fidelity Anatomical Rendering",
@@ -169,7 +175,7 @@ export const products: Product[] = [
   {
     id: "ai-mobile",
     name: "Native Companion App",
-    description: "A native mobile experience featuring offline capabilities and a specialized interface for reading complex medical explanations on the go.",
+    description: "A pocket-sized lab featuring offline capabilities, perfect for quick revision and chatting with the AI Tutor on the go.",
     status: "Mobile Optimized",
     features: [
       "Embedded 3D Model Viewer",
