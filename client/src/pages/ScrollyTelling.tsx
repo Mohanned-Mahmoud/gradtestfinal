@@ -57,7 +57,7 @@ const ContactForm = () => {
           type="email"
           required
           placeholder="Your Email" 
-          className="bg-white/5 border-white/10 text-white focus:border-cyan-500/50" 
+          className="bg-white/5 border-white/10 text-white focus:border-cyan-500/50 backdrop-blur-lg" 
         />
         <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-400 text-sm mt-1" />
       </div>
@@ -66,10 +66,10 @@ const ContactForm = () => {
       <div>
         <input type="hidden" name="subject" value={subject} />
         <Select onValueChange={(value) => setSubject(value)} required>
-          <SelectTrigger className="bg-white/5 border-white/10 text-white focus:border-cyan-500/50">
+          <SelectTrigger className="bg-white/5 border-white/10 text-white focus:border-cyan-500/50 backdrop-blur-lg">
             <SelectValue placeholder="Select a subject" />
           </SelectTrigger>
-          <SelectContent className="bg-neutral-900 border-white/10 text-white">
+          <SelectContent className="bg-neutral-900 border-white/10 text-white backdrop-blur-lg">
             <SelectItem value="General Inquiry">General Inquiry</SelectItem>
             <SelectItem value="Technical Support">Technical Support</SelectItem>
             <SelectItem value="Sales">Sales</SelectItem>
@@ -85,7 +85,7 @@ const ContactForm = () => {
           name="message"
           required
           placeholder="Your Message" 
-          className="bg-white/5 border-white/10 text-white focus:border-cyan-500/50 min-h-[120px]" 
+          className="bg-white/5 border-white/10 text-white focus:border-cyan-500/50 min-h-[120px] backdrop-blur-lg" 
         />
         <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-400 text-sm mt-1" />
       </div>
@@ -275,7 +275,7 @@ export default function ScrollyTelling() {
                 {section.type === "contact" && (
                   <div className="grid md:grid-cols-2 gap-12">
                     {/* Left Side: Contact Info */}
-                    <div className="space-y-8">
+                    <div className="space-y-8 backdrop-blur-lg">
                       <div className="flex gap-4">
                         <MapPin className="text-cyan-500 w-6 h-6 shrink-0" />
                         <div>
