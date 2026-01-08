@@ -44,7 +44,7 @@ const ContactForm = () => {
           name="name"
           required
           placeholder="Your Name" 
-          className="bg-white/5 border-white/10 text-white focus:border-cyan-500/50" 
+          className="bg-white/5 border-white/10 text-white focus:border-cyan-500/50 backdrop-blur-lg" 
         />
         <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-400 text-sm mt-1" />
       </div>

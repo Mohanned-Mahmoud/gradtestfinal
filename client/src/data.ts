@@ -25,31 +25,6 @@ export interface Section {
   rotation?: [number, number, number];
 }
 
-export interface Feature {
-  title: string;
-  description: string;
-}
-
-export interface Product {
-  id: string;
-  name: string;
-  description: string;
-  status: string;
-  features: string[];
-  cta: string;
-}
-
-export interface Section {
-  id: string;
-  title: string;
-  description: string;
-  modelUrl: string;
-  scale: number;
-  align: "left" | "center" | "right";
-  type?: "standard" | "products" | "features" | "contact";
-  position?: [number, number, number];
-  rotation?: [number, number, number];
-}
 
 export const sections: Section[] = [
   {

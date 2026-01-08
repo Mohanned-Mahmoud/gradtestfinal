@@ -53,10 +53,6 @@ export default function MobileApp() {
               <h2 className="text-4xl font-bold tracking-tighter">Technical Specifications</h2>
               <div className="space-y-4">
                 <div className="flex justify-between border-b border-white/5 pb-2">
-                  <span className="text-neutral-500">iOS Requirements</span>
-                  <span className="text-neutral-300">iOS 15.0 or later</span>
-                </div>
-                <div className="flex justify-between border-b border-white/5 pb-2">
                   <span className="text-neutral-500">Android Requirements</span>
                   <span className="text-neutral-300">Android 9.0 (Pie) or later</span>
                 </div>
