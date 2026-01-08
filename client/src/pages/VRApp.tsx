@@ -33,7 +33,7 @@ export default function VRApp() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((feature, i) => (
-              <Card key={i} className="bg-white/5 border-white/10 hover:border-cyan-500/50 transition-all group">
+              <Card key={i} className="bg-white/5 border-white/10 hover:border-cyan-500/50 transition-all group backdrop-blur-lg">
                 <CardHeader className="flex flex-row items-center gap-4">
                   <div className="p-3 rounded-xl bg-white/5 group-hover:bg-cyan-500/10 transition-colors">
                     {feature.icon}
@@ -48,7 +48,7 @@ export default function VRApp() {
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8">
-            <Card className="bg-white/5 border-white/10 lg:col-span-2 p-8">
+            <Card className="bg-white/5 border-white/10 lg:col-span-2 p-8 backdrop-blur-lg">
               <h3 className="text-3xl font-bold mb-6 tracking-tighter">Institutional Use Cases</h3>
               <div className="space-y-6">
                 <div className="flex gap-4">
@@ -75,7 +75,7 @@ export default function VRApp() {
               </div>
             </Card>
             
-            <div className="bg-cyan-900/10 border border-cyan-500/20 p-8 rounded-2xl flex flex-col justify-center space-y-6">
+            <div className="bg-cyan-900/10 border border-cyan-500/20 p-8 rounded-2xl flex flex-col justify-center space-y-6 backdrop-blur-lg">
               <h3 className="text-2xl font-bold tracking-tight">Technical Specs</h3>
               <ul className="space-y-4 text-sm text-neutral-400">
                 <li className="flex justify-between border-b border-white/5 pb-2"><span>Headset</span><span>Meta Quest 2 / 3 / Pro</span></li>

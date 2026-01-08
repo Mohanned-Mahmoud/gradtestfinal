@@ -34,7 +34,7 @@ export default function MobileApp() {
 
           <div className="grid md:grid-cols-3 gap-6">
             {features.map((feature, i) => (
-              <Card key={i} className="bg-white/5 border-white/10 hover:border-cyan-500/50 transition-all group">
+              <Card key={i} className="bg-white/5 border-white/10 hover:border-cyan-500/50 transition-all group backdrop-blur-lg">
                 <CardHeader className="flex flex-row items-center gap-4">
                   <div className="p-3 rounded-xl bg-white/5 group-hover:bg-cyan-500/10 transition-colors">
                     {feature.icon}
@@ -48,7 +48,7 @@ export default function MobileApp() {
             ))}
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center bg-white/5 p-12 rounded-3xl border border-white/10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center bg-white/5 p-12 rounded-3xl border border-white/10 backdrop-blur-lg">
             <div className="space-y-8">
               <h2 className="text-4xl font-bold tracking-tighter">Technical Specifications</h2>
               <div className="space-y-4">
