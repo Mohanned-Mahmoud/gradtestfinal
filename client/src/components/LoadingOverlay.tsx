@@ -4,31 +4,25 @@ export default function LoadingOverlay() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const checkAllLoaded = () => {
-      // Check if document is fully loaded
-      if (document.readyState === 'complete') {
-        // Wait much longer to ensure all 3D assets are rendered
-        setTimeout(() => setIsLoading(false), 3000);
-      }
+    const hideLoading = () => {
+      setIsLoading(false);
     };
 
-    // Initial check
+    // Wait for page to be completely interactive
     if (document.readyState === 'complete') {
-      checkAllLoaded();
+      // Page already loaded, wait 4 seconds for 3D assets
+      setTimeout(hideLoading, 4000);
     } else {
-      // Listen for when document finishes loading
-      window.addEventListener('load', checkAllLoaded);
-      document.addEventListener('readystatechange', checkAllLoaded);
+      // Wait for load event
+      window.addEventListener('load', () => {
+        setTimeout(hideLoading, 4000);
+      });
     }
 
-    // Also add a fallback max timeout of 8 seconds
-    const maxTimeout = setTimeout(() => setIsLoading(false), 8000);
+    // Absolute fallback: never show longer than 10 seconds
+    const maxTimeout = setTimeout(hideLoading, 10000);
 
-    return () => {
-      window.removeEventListener('load', checkAllLoaded);
-      document.removeEventListener('readystatechange', checkAllLoaded);
-      clearTimeout(maxTimeout);
-    };
+    return () => clearTimeout(maxTimeout);
   }, []);
 
   return (
