@@ -219,7 +219,7 @@ export default function ScrollyTelling() {
                   {section.title}
                 </h2>
                 
-                <p className={`text-lg md:text-xl text-neutral-400 leading-relaxed font-light mb-12 ${section.align === 'center' ? 'text-center mx-auto max-w-2xl' : ''}`}>
+                <p className={`text-lg md:text-xl text-neutral-400 leading-relaxed font-semibold mb-12 ${section.align === 'center' ? 'text-center mx-auto max-w-2xl' : ''}`}>
                   {section.description}
                 </p>
 
@@ -231,7 +231,7 @@ export default function ScrollyTelling() {
                           <CardTitle className="text-white text-xl tracking-tight">{feature.title}</CardTitle>
                         </CardHeader>
                         <CardContent>
-                          <p className="text-neutral-400 text-sm leading-relaxed">{feature.description}</p>
+                        <p className="text-neutral-400 text-sm font-semibold leading-relaxed">{feature.description}</p>
                         </CardContent>
                       </Card>
                     ))}
@@ -247,7 +247,7 @@ export default function ScrollyTelling() {
                           <CardTitle className="text-white text-2xl tracking-tight">{product.name}</CardTitle>
                         </CardHeader>
                         <CardContent className="flex-1 flex flex-col">
-                          <p className="text-neutral-400 text-sm mb-6">{product.description}</p>
+                          <p className="text-neutral-400 text-sm font-semibold mb-6">{product.description}</p>
                           <ul className="space-y-2 mb-8 flex-1">
                             {product.features.map((f, i) => (
                               <li key={i} className="text-[11px] text-neutral-500 flex items-center gap-2">
