@@ -91,7 +91,7 @@ export const sections: Section[] = [
     id: "contact",
     title: "Partner With Us",
     description: "Are you representing a medical university, a hospital training program, or an ed-tech investor? We are here to help you integrate MediLearn into your infrastructure. Contact our dedicated support team for API access, bulk licensing, or to request a personalized demonstration of our enterprise capabilities.",
-    modelUrl: "logo.glb", 
+    modelUrl: "logo2.glb", 
     scale: 3,
     align: "center",
     type: "contact"
