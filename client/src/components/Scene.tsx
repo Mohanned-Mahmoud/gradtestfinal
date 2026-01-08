@@ -91,7 +91,8 @@ interface SceneProps {
 }
 
 export default function Scene({ activeSectionId }: SceneProps) {
-  const { active } = useProgress(); // track loading to drive blur overlay
+  const { active, progress } = useProgress(); // track loading to drive blur overlay
+  const isLoading = active || progress < 100;
 
   useEffect(() => {
     sections.forEach(section => {
@@ -162,8 +163,8 @@ export default function Scene({ activeSectionId }: SceneProps) {
         <ContactShadows resolution={1024} scale={20} blur={3} opacity={0.5} far={10} color="#000000" />
         <Environment preset="sunset" />
       </Canvas>
-      <div className={`absolute inset-0 pointer-events-none transition-all duration-300 ${active ? 'backdrop-blur-md bg-black/60 opacity-100' : 'opacity-0'}`} />
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.6)_100%)]" />
+      <div className={`absolute inset-0 pointer-events-none transition-all duration-300 z-20 ${isLoading ? 'backdrop-blur-md bg-black/60 opacity-100' : 'opacity-0'}`} />
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.6)_100%)] z-10" />
     </div>
   );
 }
