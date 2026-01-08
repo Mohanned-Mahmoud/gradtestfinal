@@ -84,7 +84,7 @@ export const sections: Section[] = [
     id: "try-features",
     title: "Experience the Technology",
     description: "Don't just read about it—experience our interactive tools firsthand. This sandbox environment allows you to manipulate 3D models in real-time with zero latency. Test the rotation mechanics, explore the deep-zoom capabilities, and interact with our AI assistant to see how it answers complex clinical queries instantly.",
-    modelUrl: "anatomy.glb", 
+    modelUrl: "anatomy2.glb", 
     scale: 2.5,
     align: "left",
     type: "standard",
