@@ -168,6 +168,8 @@ export default function ScrollyTelling() {
     <div className="relative w-full bg-[#020202] text-white selection:bg-cyan-500/30 font-sans">
       {isLoading && <LoadingScreen progress={loadingProgress} />}
       
+      {!isLoading && (
+        <>
       <motion.div
         className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent z-50 origin-left"
         style={{ scaleX }}
@@ -410,6 +412,8 @@ export default function ScrollyTelling() {
           </motion.div>
         </section>
       </main>
+        </>
+      )}
     </div>
   );
 }

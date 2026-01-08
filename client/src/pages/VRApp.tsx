@@ -44,6 +44,8 @@ export default function VRApp() {
   return (
     <div className="relative min-h-screen bg-[#020202] text-white overflow-hidden">
       {isLoading && <LoadingScreen progress={loadingProgress} />}
+      {!isLoading && (
+        <>
       <div className="fixed inset-0 z-0 opacity-60">
         <Scene activeSectionId="vr-experience" onLoaded={handleLoadComplete} />
       </div>
@@ -121,6 +123,8 @@ export default function VRApp() {
           </div>
         </div>
       </div>
+        </>
+      )}
     </div>
   );
 }
