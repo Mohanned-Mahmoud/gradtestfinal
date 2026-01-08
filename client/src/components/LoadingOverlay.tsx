@@ -4,13 +4,26 @@ export default function LoadingOverlay() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Ensure overlay shows for at least 1.5 seconds minimum
-    const minDisplayTime = setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
+    const checkAllLoaded = () => {
+      // Check if document is fully loaded
+      if (document.readyState === 'complete') {
+        // Wait a bit more to ensure all 3D assets are loaded
+        setTimeout(() => setIsLoading(false), 800);
+      }
+    };
+
+    // Initial check
+    if (document.readyState === 'complete') {
+      checkAllLoaded();
+    } else {
+      // Listen for when document finishes loading
+      window.addEventListener('load', checkAllLoaded);
+      document.addEventListener('readystatechange', checkAllLoaded);
+    }
 
     return () => {
-      clearTimeout(minDisplayTime);
+      window.removeEventListener('load', checkAllLoaded);
+      document.removeEventListener('readystatechange', checkAllLoaded);
     };
   }, []);
 
