@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Scene, { LoadingScreen } from "../components/Scene";
+import Scene from "../components/Scene";
 import { sections, products, interactiveFeatures } from "../data";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useLocation } from "wouter";
@@ -108,8 +108,6 @@ const ContactForm = () => {
 
 export default function ScrollyTelling() {
   const [activeSectionId, setActiveSectionId] = useState(sections[0].id);
-  const [isLoading, setIsLoading] = useState(true);
-  const [loadingProgress, setLoadingProgress] = useState(0);
   const [, setLocation] = useLocation();
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -117,29 +115,6 @@ export default function ScrollyTelling() {
     damping: 30,
     restDelta: 0.001
   });
-
-  // Simulate loading progress
-  useEffect(() => {
-    if (isLoading) {
-      const interval = setInterval(() => {
-        setLoadingProgress(prev => {
-          if (prev >= 95) {
-            clearInterval(interval);
-            return prev;
-          }
-          return prev + Math.random() * 10;
-        });
-      }, 200);
-      return () => clearInterval(interval);
-    }
-  }, [isLoading]);
-
-  const handleLoadComplete = () => {
-    setLoadingProgress(100);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -166,8 +141,6 @@ export default function ScrollyTelling() {
 
   return (
     <div className="relative w-full bg-[#020202] text-white selection:bg-cyan-500/30 font-sans">
-      {isLoading && <LoadingScreen progress={loadingProgress} />}
-      
       <motion.div
         className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent z-50 origin-left"
         style={{ scaleX }}
@@ -212,7 +185,7 @@ export default function ScrollyTelling() {
         ))}
       </nav>
 
-      <Scene activeSectionId={activeSectionId} onLoaded={handleLoadComplete} />
+      <Scene activeSectionId={activeSectionId} />
 
       <main className="relative z-10 w-full">
         {sections.map((section) => (

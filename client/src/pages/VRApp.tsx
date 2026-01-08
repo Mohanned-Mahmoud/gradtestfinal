@@ -1,36 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLocation } from "wouter";
 import { Eye, Layers, Compass, Headphones, Target, Users, BookOpen } from "lucide-react";
-import Scene, { LoadingScreen } from "../components/Scene";
+import Scene from "../components/Scene";
 
 export default function VRApp() {
   const [, setLocation] = useLocation();
-  const [isLoading, setIsLoading] = useState(true);
-  const [loadingProgress, setLoadingProgress] = useState(0);
-
-  useEffect(() => {
-    if (isLoading) {
-      const interval = setInterval(() => {
-        setLoadingProgress(prev => {
-          if (prev >= 95) {
-            clearInterval(interval);
-            return prev;
-          }
-          return prev + Math.random() * 10;
-        });
-      }, 200);
-      return () => clearInterval(interval);
-    }
-  }, [isLoading]);
-
-  const handleLoadComplete = () => {
-    setLoadingProgress(100);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
-  };
 
   const features = [
     { icon: <Layers className="text-cyan-500" />, title: "Interactive Disassembly", description: "Manipulate organ structures with sub-millimeter precision using 6DOF tracking." },
@@ -43,9 +19,8 @@ export default function VRApp() {
 
   return (
     <div className="relative min-h-screen bg-[#020202] text-white overflow-hidden">
-      {isLoading && <LoadingScreen progress={loadingProgress} />}
       <div className="fixed inset-0 z-0 opacity-60">
-        <Scene activeSectionId="vr-experience" onLoaded={handleLoadComplete} />
+        <Scene activeSectionId="vr-experience" />
       </div>
 
       <div className="relative z-10 p-8 h-screen overflow-y-auto scrollbar-hide">

@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, Suspense, Component } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { useGLTF, Environment, ContactShadows, Html, Float, useProgress } from '@react-three/drei';
+import { useGLTF, Environment, ContactShadows, Html, Float } from '@react-three/drei';
 import { sections } from '../data';
 
 interface ModelProps {
@@ -52,13 +52,11 @@ function Model({ url, scale, position, isActive }: ModelProps) {
 }
 
 function Loader() {
-  const { progress } = useProgress();
   return (
     <Html center>
       <div className="flex flex-col items-center gap-4">
         <div className="w-12 h-12 border-4 border-cyan-500/20 border-t-cyan-500 rounded-full animate-spin" />
         <span className="text-cyan-500 font-mono text-[10px] tracking-[0.3em] uppercase opacity-50">Loading Assets</span>
-        <span className="text-cyan-400 font-mono text-[14px]">{progress.toFixed(0)}%</span>
       </div>
     </Html>
   );
@@ -82,47 +80,14 @@ class ModelErrorBoundary extends Component<{ children: React.ReactNode, fallback
 
 interface SceneProps {
   activeSectionId: string;
-  onLoaded?: () => void;
 }
 
-export function LoadingScreen({ progress }: { progress: number }) {
-  return (
-    <div className="fixed inset-0 z-50 bg-[#020202] flex items-center justify-center">
-      <div className="flex flex-col items-center gap-6">
-        <div className="relative w-24 h-24">
-          <div className="absolute inset-0 border-4 border-cyan-500/20 rounded-full" />
-          <div 
-            className="absolute inset-0 border-4 border-cyan-500 rounded-full border-t-transparent animate-spin"
-            style={{ animationDuration: '1s' }}
-          />
-        </div>
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-cyan-500 font-mono text-sm tracking-[0.3em] uppercase opacity-70">Loading Experience</span>
-          <span className="text-cyan-400 font-mono text-2xl font-bold">{progress.toFixed(0)}%</span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default function Scene({ activeSectionId, onLoaded }: SceneProps) {
+export default function Scene({ activeSectionId }: SceneProps) {
   useEffect(() => {
-    const preloadModels = async () => {
-      const promises = sections.map(section => 
-        new Promise((resolve) => {
-          useGLTF.preload(section.modelUrl);
-          // Give a small delay to ensure the model is actually loaded
-          setTimeout(resolve, 100);
-        })
-      );
-      await Promise.all(promises);
-      // Additional delay to ensure everything is rendered
-      setTimeout(() => {
-        onLoaded?.();
-      }, 500);
-    };
-    preloadModels();
-  }, [onLoaded]);
+    sections.forEach(section => {
+      useGLTF.preload(section.modelUrl);
+    });
+  }, []);
 
   return (
     <div className="fixed inset-0 z-0 bg-[#020202]">
