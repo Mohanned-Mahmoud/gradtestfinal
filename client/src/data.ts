@@ -82,7 +82,7 @@ export const sections: Section[] = [
     id: "try-features",
     title: "Experience the Technology",
     description: "Don't just read about it—experience our interactive tools firsthand. This sandbox environment allows you to manipulate 3D models in real-time with zero latency. Test the rotation mechanics, explore the deep-zoom capabilities, and interact with our AI assistant to see how it answers complex clinical queries instantly.",
-    modelUrl: "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Box/glTF-Binary/Box.glb", 
+    modelUrl: "anatomy.glb", 
     scale: 2.5,
     align: "left",
     type: "standard"
@@ -91,8 +91,8 @@ export const sections: Section[] = [
     id: "contact",
     title: "Partner With Us",
     description: "Are you representing a medical university, a hospital training program, or an ed-tech investor? We are here to help you integrate MediLearn into your infrastructure. Contact our dedicated support team for API access, bulk licensing, or to request a personalized demonstration of our enterprise capabilities.",
-    modelUrl: "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoomBox/glTF-Binary/BoomBox.glb", 
-    scale: 50,
+    modelUrl: "logo.glb", 
+    scale: 3,
     align: "center",
     type: "contact"
   },
