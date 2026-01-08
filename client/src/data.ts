@@ -108,7 +108,7 @@ export const sections: Section[] = [
     scale: 16,
     align: "left",
     rotation: [0, Math.PI, 0],
-    position: [-4, 0, 0]
+    position: [4, 0, 0]
   },
   {
     id: "ai-mobile",

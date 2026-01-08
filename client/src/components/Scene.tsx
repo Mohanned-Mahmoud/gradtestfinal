@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, Suspense, Component } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { useGLTF, Environment, ContactShadows, Html, Float } from '@react-three/drei';
+import { useGLTF, Environment, ContactShadows, Html, Float, useProgress } from '@react-three/drei';
 import { sections } from '../data';
 
 interface ModelProps {
@@ -91,6 +91,8 @@ interface SceneProps {
 }
 
 export default function Scene({ activeSectionId }: SceneProps) {
+  const { active } = useProgress(); // track loading to drive blur overlay
+
   useEffect(() => {
     sections.forEach(section => {
       useGLTF.preload(section.modelUrl);
@@ -160,6 +162,7 @@ export default function Scene({ activeSectionId }: SceneProps) {
         <ContactShadows resolution={1024} scale={20} blur={3} opacity={0.5} far={10} color="#000000" />
         <Environment preset="sunset" />
       </Canvas>
+      <div className={`absolute inset-0 pointer-events-none transition-all duration-300 ${active ? 'backdrop-blur-md bg-black/60 opacity-100' : 'opacity-0'}`} />
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.6)_100%)]" />
     </div>
   );
