@@ -226,7 +226,7 @@ export default function ScrollyTelling() {
                 {section.type === "features" && (
                   <div className="grid md:grid-cols-3 gap-8 mb-12">
                     {interactiveFeatures.map((feature, i) => (
-                      <Card key={i} className="bg-white/5 border-white/10 backdrop-blur-sm hover:border-cyan-500/50 transition-colors">
+                      <Card key={i} className="bg-white/5 border-cyan-500/50 backdrop-blur-sm hover:border-cyan-500 transition-colors">
                         <CardHeader>
                           <CardTitle className="text-white text-xl tracking-tight">{feature.title}</CardTitle>
                         </CardHeader>
