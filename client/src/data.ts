@@ -107,7 +107,7 @@ export const sections: Section[] = [
     modelUrl: "/Quest3.glb",
     scale: 16,
     align: "left",
-    rotation: [0, Math.PI + Math.PI / 2, 0],
+    rotation: [0, Math.PI * 2, 0],
     position: [4, 0, 0]
   },
   {
