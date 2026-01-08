@@ -4,32 +4,33 @@ export default function LoadingOverlay() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Check if window has finished loading
-    if (document.readyState === 'complete') {
+    // Ensure overlay shows for at least 1.5 seconds
+    const minDisplayTime = setTimeout(() => {
       setIsLoading(false);
-    }
+    }, 1500);
 
-    const handleLoad = () => setIsLoading(false);
+    // Also listen for window load event
+    const handleLoad = () => {
+      setTimeout(() => setIsLoading(false), 1500);
+    };
+
     window.addEventListener('load', handleLoad);
-
-    // Fallback: hide overlay after 3 seconds
-    const timeout = setTimeout(() => setIsLoading(false), 3000);
 
     return () => {
       window.removeEventListener('load', handleLoad);
-      clearTimeout(timeout);
+      clearTimeout(minDisplayTime);
     };
   }, []);
 
   return (
     <div
-      className={`fixed inset-0 z-50 backdrop-blur-lg bg-black/70 transition-opacity duration-500 pointer-events-none ${
-        isLoading ? 'opacity-100' : 'opacity-0'
+      className={`fixed inset-0 z-[9999] backdrop-blur-xl bg-black/80 transition-opacity duration-500 flex items-center justify-center ${
+        isLoading ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
       }`}
     >
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <div className="w-12 h-12 border-4 border-cyan-500/20 border-t-cyan-500 rounded-full animate-spin" />
-        <p className="text-cyan-500 font-mono text-[10px] tracking-[0.3em] uppercase opacity-50 mt-4">
+      <div className="flex flex-col items-center justify-center gap-4">
+        <div className="w-16 h-16 border-4 border-cyan-500/20 border-t-cyan-500 rounded-full animate-spin" />
+        <p className="text-cyan-400 font-mono text-xs tracking-[0.2em] uppercase opacity-70">
           Loading Assets
         </p>
       </div>
