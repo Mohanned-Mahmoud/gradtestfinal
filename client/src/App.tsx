@@ -9,6 +9,7 @@ import Login from "@/pages/Login";
 import MobileApp from "@/pages/MobileApp";
 import VRApp from "@/pages/VRApp";
 import WebDemo from "@/pages/WebDemo";
+import BackgroundLoader from './components/BackgroundLoader';
 
 function Router() {
   return (
@@ -27,12 +28,17 @@ function Router() {
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Router />
-      </TooltipProvider>
-    </QueryClientProvider>
+    <>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <Router />
+        </TooltipProvider>
+      </QueryClientProvider>
+      
+      {/* BackgroundLoader sits here, invisible and active */}
+      <BackgroundLoader />
+    </>
   );
 }
 

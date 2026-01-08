@@ -3,6 +3,11 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { useGLTF, Environment, ContactShadows, Html, Float } from '@react-three/drei';
 import { sections } from '../data';
 
+
+// 🚀 Preload the Hero model (Section 1) immediately!
+// This starts the network request before the component even mounts.
+useGLTF.preload(sections[0].modelUrl);
+
 interface ModelProps {
   url: string;
   scale: number;
