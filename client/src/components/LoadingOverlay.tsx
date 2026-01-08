@@ -1,34 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useLoading } from '@/context/LoadingContext';
 
 export default function LoadingOverlay() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const hideLoading = () => {
-      setIsLoading(false);
-    };
-
-    // Wait for page to be completely interactive
-    if (document.readyState === 'complete') {
-      // Page already loaded, wait 4 seconds for 3D assets
-      setTimeout(hideLoading, 4000);
-    } else {
-      // Wait for load event
-      window.addEventListener('load', () => {
-        setTimeout(hideLoading, 4000);
-      });
-    }
-
-    // Absolute fallback: never show longer than 10 seconds
-    const maxTimeout = setTimeout(hideLoading, 10000);
-
-    return () => clearTimeout(maxTimeout);
-  }, []);
+  const { isLoadingAssets } = useLoading();
 
   return (
     <div
       className={`fixed inset-0 z-[9999] backdrop-blur-xl bg-black/80 transition-opacity duration-500 flex items-center justify-center ${
-        isLoading ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        isLoadingAssets ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
       }`}
     >
       <div className="flex flex-col items-center justify-center gap-6">

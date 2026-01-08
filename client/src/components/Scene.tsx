@@ -2,6 +2,7 @@ import React, { useRef, useEffect, Suspense, Component } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useGLTF, Environment, ContactShadows, Html, Float } from '@react-three/drei';
 import { sections } from '../data';
+import { useLoading } from '@/context/LoadingContext';
 
 interface ModelProps {
   url: string;
@@ -91,12 +92,20 @@ interface SceneProps {
 }
 
 export default function Scene({ activeSectionId }: SceneProps) {
+  const { setIsLoadingAssets } = useLoading();
 
   useEffect(() => {
     sections.forEach(section => {
       useGLTF.preload(section.modelUrl);
     });
-  }, []);
+    
+    // Mark assets as loaded after a short delay to ensure all GLBs are ready
+    const timer = setTimeout(() => {
+      setIsLoadingAssets(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [setIsLoadingAssets]);
 
   return (
     <div className="fixed inset-0 z-0 bg-[#020202]">
