@@ -91,6 +91,16 @@ export const sections: Section[] = [
     position: [3, -2.5, 0]
   },
   {
+    id: "contact",
+    title: "Partner With Us",
+    description: "Are you representing a medical university, a hospital training program, or an ed-tech investor? We are here to help you integrate MediLearn into your infrastructure. Contact our dedicated support team for API access, bulk licensing, or to request a personalized demonstration of our enterprise capabilities.",
+    modelUrl: "logo2.glb", 
+    scale: 3,
+    align: "center",
+    type: "contact",
+    rotation: [0, Math.PI, 0]
+  },
+  {
     id: "vr-experience",
     title: "Immersive VR Simulation",
     description: "Step inside the human body with our Meta Quest optimized application. Perform virtual dissections, practice surgical procedures in a risk-free environment, and visualize complex spatial relationships that are impossible to grasp on 2D screens. Supports hand-tracking for intuitive manipulation.",
@@ -107,17 +117,7 @@ export const sections: Section[] = [
     modelUrl: "/phone.glb",
     scale: 4,
     align: "center"
-  },  
-  {
-    id: "contact",
-    title: "Partner With Us",
-    description: "Are you representing a medical university, a hospital training program, or an ed-tech investor? We are here to help you integrate MediLearn into your infrastructure. Contact our dedicated support team for API access, bulk licensing, or to request a personalized demonstration of our enterprise capabilities.",
-    modelUrl: "logo2.glb", 
-    scale: 3,
-    align: "center",
-    type: "contact",
-    rotation: [0, Math.PI * 2.5, 0]
-  },
+  }
 ];
 
 export const interactiveFeatures = [
