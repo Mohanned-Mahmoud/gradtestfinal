@@ -100,7 +100,7 @@ export default function Login() {
   const isBusy = form.formState.isSubmitting;
 
   return (
-    <div className="min-h-screen w-full bg-[#020202] flex items-center justify-center p-4">
+    <div className="min-h-screen w-full bg-[#020202] flex items-center justify-center p-4 relative overflow-hidden">
       <div className="absolute inset-0 bg-cyan-500/5 blur-[120px] rounded-full scale-150 pointer-events-none" />
       
       <Card className="w-full max-w-md bg-black/50 border-white/10 backdrop-blur-xl relative z-10">
