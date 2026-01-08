@@ -85,14 +85,15 @@ export const sections: Section[] = [
     modelUrl: "anatomy.glb", 
     scale: 2.5,
     align: "left",
-    type: "standard"
+    type: "standard",
+    position: [0, -2.5, 0]
   },
   {
     id: "contact",
     title: "Partner With Us",
     description: "Are you representing a medical university, a hospital training program, or an ed-tech investor? We are here to help you integrate MediLearn into your infrastructure. Contact our dedicated support team for API access, bulk licensing, or to request a personalized demonstration of our enterprise capabilities.",
     modelUrl: "logo2.glb", 
-    scale: 3,
+    scale: -3,
     align: "center",
     type: "contact"
   },
