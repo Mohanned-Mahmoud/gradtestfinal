@@ -250,7 +250,7 @@ export default function ScrollyTelling() {
                           <p className="text-neutral-400 text-sm font-semibold mb-6">{product.description}</p>
                           <ul className="space-y-2 mb-8 flex-1">
                             {product.features.map((f, i) => (
-                              <li key={i} className="text-[11px] text-neutral-100 flex items-center gap-2">
+                              <li key={i} className="text-[11px] text-neutral-300 flex items-center gap-2">
                                 <div className="w-1 h-1 bg-cyan-500 rounded-full" />
                                 {f.replace(/\*\*/g, '')}
                               </li>
