@@ -1,12 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { useLocation } from "wouter";
 import Scene from "../components/Scene";
-import { Badge } from "@/components/ui/badge";
-import { Activity, Brain, Heart, Info, Send, User } from "lucide-react";
+import { Activity, Send, User } from "lucide-react";
 
 export default function WebDemo() {
   const [, setLocation] = useLocation();
@@ -57,69 +54,11 @@ export default function WebDemo() {
         <div className="flex items-center gap-4">
           <div className="w-8 h-8 rounded bg-cyan-500 flex items-center justify-center font-bold text-black text-xs">ML</div>
           <h1 className="text-xl font-bold tracking-tighter">WEB <span className="text-cyan-500">DEMO</span></h1>
-          <Badge variant="outline" className="text-cyan-500 border-cyan-500/30 text-[9px] uppercase tracking-widest bg-cyan-500/5 ml-4">Live Preview</Badge>
         </div>
         <Button variant="ghost" onClick={() => setLocation("/")} className="text-neutral-400 hover:text-white uppercase tracking-widest text-[10px] font-bold">Close Demo</Button>
       </header>
 
-      <main className="relative z-10 flex-1 flex flex-col min-h-0">
-        <Tabs defaultValue="preview" className="flex-1 flex flex-col min-h-0">
-          <div className="px-8 border-b border-white/5 bg-black/40 backdrop-blur-md">
-            <TabsList className="bg-transparent border-none gap-8 h-14">
-              <TabsTrigger 
-                value="preview" 
-                className="data-[state=active]:bg-transparent data-[state=active]:text-cyan-500 data-[state=active]:border-b-2 data-[state=active]:border-cyan-500 rounded-none h-full text-xs uppercase tracking-[0.2em] font-bold px-0"
-              >
-                Live Preview
-              </TabsTrigger>
-              <TabsTrigger 
-                value="chat" 
-                className="data-[state=active]:bg-transparent data-[state=active]:text-cyan-500 data-[state=active]:border-b-2 data-[state=active]:border-cyan-500 rounded-none h-full text-xs uppercase tracking-[0.2em] font-bold px-0"
-              >
-                AI Assistant
-              </TabsTrigger>
-            </TabsList>
-          </div>
-
-          <TabsContent value="preview" className="flex-1 m-0 relative overflow-hidden flex flex-col min-h-0">
-            <div className="flex-1 relative bg-transparent flex flex-col overflow-y-auto scrollbar-hide min-h-0">
-              <div className="h-[200vh] relative">
-                <div className="sticky top-6 left-6 z-10 space-y-4 max-w-xs p-6">
-                  <Tabs defaultValue="brain" onValueChange={(v) => setActiveModel(v as "brain" | "heart")} className="w-full">
-                    <TabsList className="bg-black/80 border border-white/10 backdrop-blur-md">
-                      <TabsTrigger value="brain" className="text-[10px] tracking-widest uppercase py-2 px-4"><Brain className="mr-2 h-3 w-3" /> Brain</TabsTrigger>
-                      <TabsTrigger value="heart" className="text-[10px] tracking-widest uppercase py-2 px-4"><Heart className="mr-2 h-3 w-3" /> Heart</TabsTrigger>
-                    </TabsList>
-                  </Tabs>
-                  
-                  <Card className="bg-black/60 border-white/10 backdrop-blur-md">
-                    <CardHeader className="p-4 border-b border-white/5">
-                      <CardTitle className="text-xs uppercase tracking-widest text-cyan-500 flex items-center gap-2">
-                        <Info className="h-3 w-3" /> Model Information
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="p-4 space-y-2">
-                      <p className="text-[11px] text-neutral-300 leading-relaxed">
-                        {activeModel === 'brain' 
-                          ? "Interactive model of the human encephalon. Explore cerebral lobes, cerebellum, and brainstem with precision."
-                          : "High-fidelity cardiovascular simulation. Visualize chambers, major vessels, and valvular structures."}
-                      </p>
-                      <div className="flex items-center gap-2 text-[9px] text-neutral-500 uppercase tracking-tighter">
-                        <Activity className="h-2 w-2 text-green-500" /> Rendering at 60 FPS
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-
-                <div className="absolute bottom-6 left-6 z-10 flex gap-2">
-                  <div className="px-3 py-1 bg-black/60 border border-white/10 rounded-full text-[10px] text-neutral-400 uppercase tracking-widest backdrop-blur-md">Scroll to Rotate</div>
-                  <div className="px-3 py-1 bg-black/60 border border-white/10 rounded-full text-[10px] text-neutral-400 uppercase tracking-widest backdrop-blur-md">Right Click to Pan</div>
-                </div>
-              </div>
-            </div>
-          </TabsContent>
-
-          <TabsContent value="chat" className="flex-1 m-0 bg-black flex flex-col min-h-0">
+      <main className="relative z-10 flex-1 flex flex-col min-h-0 bg-black">
             <div className="p-6 border-b border-white/5 flex items-center justify-between shrink-0">
               <h2 className="text-xs uppercase tracking-[0.4em] font-black text-white flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" /> AI ASSISTANT
@@ -179,8 +118,6 @@ export default function WebDemo() {
                 Data protected by 256-bit encryption
               </p>
             </div>
-          </TabsContent>
-        </Tabs>
       </main>
     </div>
   );
