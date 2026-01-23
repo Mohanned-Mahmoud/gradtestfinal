@@ -25,7 +25,6 @@ export interface Section {
   rotation?: [number, number, number];
 }
 
-
 export const sections: Section[] = [
   {
     id: "home",
@@ -75,6 +74,7 @@ export const sections: Section[] = [
     type: "contact",
     rotation: [0, Math.PI, 0]
   },
+  // These sections are used for background transitions, content is handled in the component
   {
     id: "vr-experience",
     title: "Immersive VR Simulation",
@@ -107,10 +107,6 @@ export const interactiveFeatures = [
   {
     title: "Adaptive Learning Engine",
     description: "The system monitors your progress and adjusts difficulty in real-time. It identifies your weak points and personalizes the curriculum to accelerate mastery."
-  },
-  {
-    title: "Clinical Relevance",
-    description: "Link anatomy to real-world medicine. The system explains disease associations and diagnostic contexts while you examine the relevant organs."
   },
   {
     title: "Smart Assessment",

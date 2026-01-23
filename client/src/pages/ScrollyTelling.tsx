@@ -148,7 +148,7 @@ export default function ScrollyTelling() {
 
       {/* Modern Header */}
       <header className="fixed top-0 left-0 w-full p-8 z-40 flex justify-between items-center backdrop-blur-md bg-black/40 border-b border-white/5">
-        <div className="text-xl font-bold tracking-tighter">MEDILERN <span className="text-cyan-500">.</span></div>
+        <div className="text-xl font-bold tracking-tighter">MEDILEARN <span className="text-cyan-500">.</span></div>
         <div className="hidden md:flex gap-8 items-center">
            <div className="flex gap-8 text-[10px] tracking-[0.4em] uppercase font-medium opacity-50">
             <span>Simulation</span>
